@@ -3,6 +3,33 @@
 // Source: three-ingredient-meals-data.json
 // ============================================================
 
+// Helper: get a flat list of all recipes
+export function getAllRecipes(): Recipe[] {
+  const proteinRecipes = PROTEINS.flatMap((p) => p.pairings);
+  const baseRecipes = DOCTOR_IT_UP_BASES.flatMap((b) => b.recipes);
+  return [...proteinRecipes, ...baseRecipes];
+}
+
+// Helper: find a recipe by ID across all sources
+export function getRecipeById(id: string): Recipe | undefined {
+  return getAllRecipes().find((r) => r.id === id);
+}
+
+// Helper: find which protein or base a recipe belongs to
+export function getRecipeContext(id: string): { type: "protein"; parent: Protein } | { type: "base"; parent: DoctorItUpBase } | null {
+  for (const protein of PROTEINS) {
+    if (protein.pairings.some((r) => r.id === id)) {
+      return { type: "protein", parent: protein };
+    }
+  }
+  for (const base of DOCTOR_IT_UP_BASES) {
+    if (base.recipes.some((r) => r.id === id)) {
+      return { type: "base", parent: base };
+    }
+  }
+  return null;
+}
+
 export interface Recipe {
   id: string;
   recipeName: string;
