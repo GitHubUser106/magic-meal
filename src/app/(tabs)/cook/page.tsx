@@ -6,34 +6,50 @@ import { RecipeCard } from "@/components/recipe-card";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
+import { usePreferences } from "@/lib/hooks/use-preferences";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-// Curated quick picks — popular, fast recipes
-const QUICK_PICK_IDS = [
-  "chicken-tortilla-cheese",
-  "beef-buns-cheese",
-  "eggs-bread-cheese",
-  "cheese-grilled-tomato-soup",
+// Quick picks for non-vegetarian users
+const DEFAULT_QUICK_PICK_IDS = [
   "chicken-honey-garlic",
+  "eggs-rice-soysauce",
+  "cheese-grilled-tomato-soup",
+  "beef-tortilla-cheese",
   "tofu-stirfry-rice",
 ];
+
+// Quick picks for vegetarian users — swap meat recipes for vegetarian
+const VEGGIE_QUICK_PICK_IDS = [
+  "beans-tacos",
+  "eggs-rice-soysauce",
+  "cheese-grilled-tomato-soup",
+  "cheese-pasta-butter",
+  "tofu-stirfry-rice",
+];
+
+const VEGGIE_PROTEIN_IDS = ["eggs", "black-beans", "cheese", "tofu"];
 
 export default function CookPage() {
   const [timeFilter, setTimeFilter] = useState<number | null>(null);
   const { toggleSave, isSaved } = useSavedRecipes();
+  const { preferences } = usePreferences();
+
+  const isVegetarian = preferences.dietary === "vegetarian";
 
   const allRecipes = useMemo(() => getAllRecipes(), []);
 
+  const quickPickIds = isVegetarian ? VEGGIE_QUICK_PICK_IDS : DEFAULT_QUICK_PICK_IDS;
+
   const quickPicks = useMemo(() => {
-    let picks = allRecipes.filter((r) => QUICK_PICK_IDS.includes(r.id));
+    let picks = quickPickIds
+      .map((id) => allRecipes.find((r) => r.id === id))
+      .filter((r): r is Recipe => r !== undefined);
     if (timeFilter) {
       picks = picks.filter((r) => parseInt(r.cookTime) <= timeFilter);
     }
     return picks;
-  }, [allRecipes, timeFilter]);
-
-  const VEGGIE_IDS = ["eggs", "black-beans", "cheese", "tofu"];
+  }, [allRecipes, timeFilter, quickPickIds]);
 
   const filteredProteins = useMemo(() => {
     const filtered = timeFilter
@@ -43,10 +59,16 @@ export default function CookPage() {
         })).filter((p) => p.pairings.length > 0)
       : PROTEINS;
     return {
-      meat: filtered.filter((p) => !VEGGIE_IDS.includes(p.id)),
-      veggie: filtered.filter((p) => VEGGIE_IDS.includes(p.id)),
+      meat: filtered.filter((p) => !VEGGIE_PROTEIN_IDS.includes(p.id)),
+      veggie: filtered.filter((p) => VEGGIE_PROTEIN_IDS.includes(p.id)),
     };
   }, [timeFilter]);
+
+  // Determine which protein sections to show based on dietary preference
+  // Only vegetarian users see the vegetarian section on the home screen
+  // All proteins remain accessible via Explore tab for everyone
+  const showMeat = !isVegetarian;
+  const showVeggie = isVegetarian;
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
@@ -137,35 +159,37 @@ export default function CookPage() {
         </div>
       </section>
 
-      {/* Pick Your Protein */}
-      <section className="mb-6">
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
-          Pick your protein
-        </h2>
-        <div className="grid grid-cols-3 gap-2">
-          {filteredProteins.meat.map((protein) => (
-            <Link
-              key={protein.id}
-              href={`/explore?protein=${protein.id}`}
-              className="flex flex-col items-center gap-1 p-3 rounded-xl border-2 border-border bg-card hover:border-amber-300 hover:bg-amber-50/50 active:scale-[0.97] transition-all min-h-[80px]"
-            >
-              <span className="text-2xl">{protein.emoji}</span>
-              <span className="text-xs font-semibold leading-tight text-center">
-                {protein.name}
-              </span>
-              <span className="text-[10px] text-muted-foreground">
-                {protein.pairings.length} meals
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Vegetarian */}
-      {filteredProteins.veggie.length > 0 && (
+      {/* Pick Your Protein — meat section */}
+      {showMeat && filteredProteins.meat.length > 0 && (
         <section className="mb-6">
           <h2 className="text-sm font-semibold text-muted-foreground mb-3">
-            Vegetarian
+            Pick your protein
+          </h2>
+          <div className="grid grid-cols-3 gap-2">
+            {filteredProteins.meat.map((protein) => (
+              <Link
+                key={protein.id}
+                href={`/explore?protein=${protein.id}`}
+                className="flex flex-col items-center gap-1 p-3 rounded-xl border-2 border-border bg-card hover:border-amber-300 hover:bg-amber-50/50 active:scale-[0.97] transition-all min-h-[80px]"
+              >
+                <span className="text-2xl">{protein.emoji}</span>
+                <span className="text-xs font-semibold leading-tight text-center">
+                  {protein.name}
+                </span>
+                <span className="text-[10px] text-muted-foreground">
+                  {protein.pairings.length} meals
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Vegetarian section */}
+      {showVeggie && filteredProteins.veggie.length > 0 && (
+        <section className="mb-6">
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+            {isVegetarian ? "Pick your protein" : "Vegetarian"}
           </h2>
           <div className="grid grid-cols-3 gap-2">
             {filteredProteins.veggie.map((protein) => (
