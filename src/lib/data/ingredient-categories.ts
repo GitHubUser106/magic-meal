@@ -31,16 +31,21 @@ const INGREDIENT_MAP: [string, string][] = [
   ["green onion", "Produce"],
   ["onion", "Produce"],
   ["garlic", "Produce"],
+  ["tofu", "Produce"],
 
   // Meat & Seafood
+  ["rotisserie chicken", "Meat & Seafood"],
   ["chicken breast", "Meat & Seafood"],
   ["chicken", "Meat & Seafood"],
   ["ground beef", "Meat & Seafood"],
   ["bacon", "Meat & Seafood"],
   ["hot dog", "Meat & Seafood"],
+  ["deli ham", "Meat & Seafood"],
+  ["deli meat", "Meat & Seafood"],
 
   // Dairy & Eggs
   ["egg", "Dairy & Eggs"],
+  ["cream cheese", "Dairy & Eggs"],
   ["cheese", "Dairy & Eggs"],
   ["cheddar", "Dairy & Eggs"],
   ["american cheese", "Dairy & Eggs"],
@@ -50,6 +55,8 @@ const INGREDIENT_MAP: [string, string][] = [
 
   // Frozen
   ["frozen broccoli", "Frozen"],
+  ["frozen hash brown", "Frozen"],
+  ["frozen stir-fry", "Frozen"],
   ["frozen mixed", "Frozen"],
   ["frozen peas", "Frozen"],
   ["frozen", "Frozen"],
@@ -62,18 +69,24 @@ const INGREDIENT_MAP: [string, string][] = [
   ["tortilla", "Bread & Bakery"],
   ["taco shell", "Bread & Bakery"],
   ["cracker", "Bread & Bakery"],
-  ["tortilla chip", "Bread & Bakery"],
 
   // Canned Goods
   ["canned tuna", "Canned Goods"],
   ["canned chicken", "Canned Goods"],
   ["canned black bean", "Canned Goods"],
+  ["canned pinto", "Canned Goods"],
   ["canned bean", "Canned Goods"],
+  ["canned refried", "Canned Goods"],
+  ["refried beans", "Canned Goods"],
+  ["canned diced tomato", "Canned Goods"],
+  ["rotel", "Canned Goods"],
   ["campbell", "Canned Goods"],
   ["cream of mushroom", "Canned Goods"],
   ["tomato soup", "Canned Goods"],
+  ["chicken noodle soup", "Canned Goods"],
 
   // Pantry & Dry Goods
+  ["tortilla chip", "Pantry & Dry Goods"],
   ["instant rice", "Pantry & Dry Goods"],
   ["rice", "Pantry & Dry Goods"],
   ["pasta", "Pantry & Dry Goods"],
@@ -86,13 +99,18 @@ const INGREDIENT_MAP: [string, string][] = [
   ["mac & cheese", "Pantry & Dry Goods"],
   ["oat", "Pantry & Dry Goods"],
   ["flour", "Pantry & Dry Goods"],
+  ["peanut butter", "Pantry & Dry Goods"],
 
   // Condiments & Sauces
   ["marinara", "Condiments & Sauces"],
   ["bbq sauce", "Condiments & Sauces"],
   ["salsa", "Condiments & Sauces"],
   ["soy sauce", "Condiments & Sauces"],
+  ["sriracha", "Condiments & Sauces"],
   ["hot sauce", "Condiments & Sauces"],
+  ["frank's", "Condiments & Sauces"],
+  ["ranch", "Condiments & Sauces"],
+  ["honey", "Condiments & Sauces"],
   ["mayo", "Condiments & Sauces"],
   ["ketchup", "Condiments & Sauces"],
   ["mustard", "Condiments & Sauces"],

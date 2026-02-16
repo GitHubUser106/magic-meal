@@ -11,11 +11,12 @@ import Link from "next/link";
 
 // Curated quick picks — popular, fast recipes
 const QUICK_PICK_IDS = [
-  "eggs-bread-cheese",
-  "beef-buns-cheese",
   "chicken-tortilla-cheese",
-  "bacon-eggs-cheese",
-  "eggs-tortilla-cheese",
+  "beef-buns-cheese",
+  "eggs-bread-cheese",
+  "cheese-grilled-tomato-soup",
+  "chicken-honey-garlic",
+  "tofu-stirfry-rice",
 ];
 
 export default function CookPage() {
@@ -32,12 +33,19 @@ export default function CookPage() {
     return picks;
   }, [allRecipes, timeFilter]);
 
+  const VEGGIE_IDS = ["eggs", "black-beans", "cheese", "tofu"];
+
   const filteredProteins = useMemo(() => {
-    if (!timeFilter) return PROTEINS;
-    return PROTEINS.map((p) => ({
-      ...p,
-      pairings: p.pairings.filter((r) => parseInt(r.cookTime) <= timeFilter),
-    })).filter((p) => p.pairings.length > 0);
+    const filtered = timeFilter
+      ? PROTEINS.map((p) => ({
+          ...p,
+          pairings: p.pairings.filter((r) => parseInt(r.cookTime) <= timeFilter),
+        })).filter((p) => p.pairings.length > 0)
+      : PROTEINS;
+    return {
+      meat: filtered.filter((p) => !VEGGIE_IDS.includes(p.id)),
+      veggie: filtered.filter((p) => VEGGIE_IDS.includes(p.id)),
+    };
   }, [timeFilter]);
 
   return (
@@ -135,7 +143,7 @@ export default function CookPage() {
           Pick your protein
         </h2>
         <div className="grid grid-cols-3 gap-2">
-          {filteredProteins.map((protein) => (
+          {filteredProteins.meat.map((protein) => (
             <Link
               key={protein.id}
               href={`/explore?protein=${protein.id}`}
@@ -152,6 +160,32 @@ export default function CookPage() {
           ))}
         </div>
       </section>
+
+      {/* Vegetarian */}
+      {filteredProteins.veggie.length > 0 && (
+        <section className="mb-6">
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+            Vegetarian
+          </h2>
+          <div className="grid grid-cols-3 gap-2">
+            {filteredProteins.veggie.map((protein) => (
+              <Link
+                key={protein.id}
+                href={`/explore?protein=${protein.id}`}
+                className="flex flex-col items-center gap-1 p-3 rounded-xl border-2 border-border bg-card hover:border-amber-300 hover:bg-amber-50/50 active:scale-[0.97] transition-all min-h-[80px]"
+              >
+                <span className="text-2xl">{protein.emoji}</span>
+                <span className="text-xs font-semibold leading-tight text-center">
+                  {protein.name}
+                </span>
+                <span className="text-[10px] text-muted-foreground">
+                  {protein.pairings.length} meals
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

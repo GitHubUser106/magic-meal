@@ -170,7 +170,7 @@ function ExploreContent() {
           By time
         </h2>
         <div className="flex gap-2">
-          {[10, 20, 30].map((mins) => (
+          {[10, 20].map((mins) => (
             <button
               key={mins}
               onClick={() => setFilter({ type: "time", minutes: mins })}
