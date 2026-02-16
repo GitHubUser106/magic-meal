@@ -4,11 +4,13 @@ import { use } from "react";
 import { notFound } from "next/navigation";
 import { getRecipeById, getRecipeContext } from "@/lib/data/recipes";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
+import { useShoppingList } from "@/lib/hooks/use-shopping-list";
 import { Badge } from "@/components/ui/badge";
-import { Heart, ChevronLeft, Clock, ChefHat, Users, Lightbulb } from "lucide-react";
+import { Heart, ChevronLeft, Clock, ChefHat, Users, Lightbulb, ShoppingCart, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function RecipeDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -16,6 +18,8 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
   const context = getRecipeContext(id);
   const router = useRouter();
   const { toggleSave, isSaved } = useSavedRecipes();
+  const { addRecipe, hasRecipe } = useShoppingList();
+  const inList = hasRecipe(id);
 
   if (!recipe) {
     notFound();
@@ -96,10 +100,44 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         {/* Start Cooking CTA */}
         <Link
           href={`/cook-mode/${recipe.id}`}
-          className="block w-full text-center py-3.5 rounded-xl bg-amber-500 text-white font-semibold text-base hover:bg-amber-600 active:scale-[0.98] transition-all mb-8 min-h-[48px]"
+          className="block w-full text-center py-3.5 rounded-xl bg-amber-500 text-white font-semibold text-base hover:bg-amber-600 active:scale-[0.98] transition-all mb-3 min-h-[48px]"
         >
           Start Cooking
         </Link>
+
+        {/* Add to Shopping List */}
+        <button
+          onClick={() => {
+            if (!inList) {
+              addRecipe(recipe.id);
+              toast.success("Added to shopping list", {
+                action: {
+                  label: "View list",
+                  onClick: () => router.push("/list"),
+                },
+              });
+            }
+          }}
+          disabled={inList}
+          className={cn(
+            "flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium transition-all mb-8 min-h-[48px]",
+            inList
+              ? "bg-muted text-muted-foreground cursor-default"
+              : "bg-muted/50 border border-border text-foreground hover:bg-muted active:scale-[0.98]"
+          )}
+        >
+          {inList ? (
+            <>
+              <Check className="w-4 h-4" />
+              In Shopping List
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="w-4 h-4" />
+              Add to Shopping List
+            </>
+          )}
+        </button>
 
         {/* Ingredients */}
         <section className="mb-6">

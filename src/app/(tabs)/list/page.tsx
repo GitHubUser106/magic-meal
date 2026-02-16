@@ -1,96 +1,119 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { SHOPPING_LIST } from "@/lib/data/recipes";
-import { ShoppingCart } from "lucide-react";
+import { useShoppingList } from "@/lib/hooks/use-shopping-list";
+import { categorizeIngredient, CATEGORY_INFO } from "@/lib/data/ingredient-categories";
+import { ShoppingCart, Trash2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const STORAGE_KEY = "magic_meal_checklist";
-
-function loadChecked(): Set<string> {
-  if (typeof window === "undefined") return new Set();
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) return new Set(JSON.parse(stored));
-  } catch {
-    // Invalid JSON — start fresh
-  }
-  return new Set();
-}
-
-function saveChecked(checked: Set<string>) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...checked]));
-}
+import Link from "next/link";
 
 export default function ListPage() {
-  const [checked, setChecked] = useState<Set<string>>(new Set());
+  const { items, toggleChecked, clearChecked, clearAll, getUncheckedCount } = useShoppingList();
 
-  useEffect(() => {
-    setChecked(loadChecked());
-  }, []);
+  const uncheckedCount = getUncheckedCount();
+  const checkedCount = items.filter((item) => item.checked).length;
 
-  function toggle(key: string) {
-    setChecked((prev) => {
-      const next = new Set(prev);
-      if (next.has(key)) {
-        next.delete(key);
-      } else {
-        next.add(key);
-      }
-      saveChecked(next);
-      return next;
-    });
+  // Group items by category
+  const grouped = items.reduce<Record<string, typeof items>>((acc, item) => {
+    const category = categorizeIngredient(item.ingredient);
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(item);
+    return acc;
+  }, {});
+
+  // Sort categories by sortOrder
+  const sortedCategories = Object.keys(grouped).sort(
+    (a, b) => (CATEGORY_INFO[a]?.sortOrder ?? 99) - (CATEGORY_INFO[b]?.sortOrder ?? 99)
+  );
+
+  if (items.length === 0) {
+    return (
+      <div className="px-4 py-5 max-w-lg mx-auto">
+        <h1 className="text-xl font-bold mb-4">Shopping List</h1>
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <ShoppingCart className="w-12 h-12 text-muted-foreground/40 mb-4" />
+          <h2 className="text-base font-semibold mb-1">No items yet</h2>
+          <p className="text-sm text-muted-foreground mb-6 max-w-[250px]">
+            Add ingredients from any recipe to build your shopping list.
+          </p>
+          <Link
+            href="/explore"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 text-white font-semibold text-sm hover:bg-amber-600 active:scale-[0.98] transition-all min-h-[44px]"
+          >
+            Browse Recipes
+          </Link>
+        </div>
+      </div>
+    );
   }
-
-  const sections = [
-    { title: "Proteins", items: SHOPPING_LIST.proteins, prefix: "protein" },
-    { title: "Pairing ingredients", items: SHOPPING_LIST.pairingIngredients, prefix: "pairing" },
-    { title: "Doctor it up bases", items: SHOPPING_LIST.doctoredUpBases, prefix: "base" },
-  ];
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-xl font-bold mb-4">Shopping List</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-bold">Shopping List</h1>
+        <span className="text-sm text-muted-foreground">
+          {uncheckedCount} item{uncheckedCount !== 1 ? "s" : ""} remaining
+        </span>
+      </div>
 
-      <div className="bg-muted/30 rounded-lg p-4 mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <ShoppingCart className="w-4 h-4 text-muted-foreground" />
-          <h2 className="text-sm font-semibold">Starter grocery list</h2>
+      {/* Action buttons */}
+      {checkedCount > 0 && (
+        <div className="flex gap-2 mb-4">
+          <button
+            onClick={clearChecked}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-muted/50 border border-border text-sm font-medium hover:bg-muted transition-colors min-h-[44px]"
+          >
+            <CheckCircle2 className="w-4 h-4" />
+            Clear Checked ({checkedCount})
+          </button>
+          <button
+            onClick={clearAll}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-muted/50 border border-border text-sm font-medium text-red-600 hover:bg-red-50 transition-colors min-h-[44px]"
+          >
+            <Trash2 className="w-4 h-4" />
+            Clear All
+          </button>
         </div>
-        <p className="text-xs text-muted-foreground mb-4">
-          Everything you need to make multiple meals this week. Estimated cost: {SHOPPING_LIST.estimatedCost}
-        </p>
+      )}
 
-        <div className="space-y-4">
-          {sections.map((section) => (
-            <div key={section.prefix}>
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                {section.title}
-              </h3>
+      {/* Grouped items */}
+      <div className="space-y-5">
+        {sortedCategories.map((category) => {
+          const info = CATEGORY_INFO[category] ?? CATEGORY_INFO["Other"];
+          const categoryItems = grouped[category];
+          return (
+            <div key={category}>
+              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
+                <span>{info.emoji}</span>
+                {info.label}
+              </h2>
               <ul className="space-y-1">
-                {section.items.map((item, i) => {
-                  const key = `${section.prefix}-${i}`;
-                  const isChecked = checked.has(key);
-                  return (
-                    <li key={key}>
-                      <label className="flex items-start gap-2 text-sm cursor-pointer min-h-[36px] py-1">
-                        <input
-                          type="checkbox"
-                          checked={isChecked}
-                          onChange={() => toggle(key)}
-                          className="mt-0.5 h-4 w-4 rounded border-border accent-amber-500 flex-shrink-0"
-                        />
-                        <span className={cn(isChecked && "line-through text-muted-foreground")}>
-                          {item}
+                {categoryItems.map((item, i) => (
+                  <li key={`${item.recipeId}-${item.ingredient}-${i}`}>
+                    <label className="flex items-start gap-3 text-sm cursor-pointer min-h-[44px] py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
+                      <input
+                        type="checkbox"
+                        checked={item.checked}
+                        onChange={() => toggleChecked(item.ingredient, item.recipeId)}
+                        className="mt-0.5 h-4 w-4 rounded border-border accent-amber-500 flex-shrink-0"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <span className={cn(
+                          "block",
+                          item.checked && "line-through text-muted-foreground"
+                        )}>
+                          {item.ingredient}
                         </span>
-                      </label>
-                    </li>
-                  );
-                })}
+                        <span className="text-xs text-muted-foreground">
+                          {item.recipeName}
+                        </span>
+                      </div>
+                    </label>
+                  </li>
+                ))}
               </ul>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
