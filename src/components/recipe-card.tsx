@@ -16,6 +16,8 @@ interface RecipeCardProps {
 }
 
 export function RecipeCard({ recipe, emoji, onSave, isSaved = false, compact = false }: RecipeCardProps) {
+  const displayEmoji = emoji ?? recipe.emoji;
+
   return (
     <Link href={`/recipe/${recipe.id}`} className="block">
       <Card className={cn(
@@ -46,8 +48,10 @@ export function RecipeCard({ recipe, emoji, onSave, isSaved = false, compact = f
           )}
 
           {/* Emoji */}
-          {emoji && (
-            <div className="text-2xl mb-2">{emoji}</div>
+          {displayEmoji && (
+            <span className="text-2xl mb-2 block" role="img" aria-label={recipe.recipeName}>
+              {displayEmoji}
+            </span>
           )}
 
           {/* Title */}

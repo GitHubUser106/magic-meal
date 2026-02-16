@@ -53,6 +53,32 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
     };
   }, []);
 
+  // Play a beep tone via Web Audio API
+  const playBeep = useCallback(() => {
+    try {
+      const ctx = new AudioContext();
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+      oscillator.frequency.value = 880;
+      oscillator.type = "sine";
+      gain.gain.value = 0.3;
+
+      oscillator.start();
+      // Three short beeps
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.setValueAtTime(0, ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0, ctx.currentTime + 0.4);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime + 0.5);
+      gain.gain.setValueAtTime(0, ctx.currentTime + 0.65);
+      oscillator.stop(ctx.currentTime + 0.7);
+    } catch {
+      // Web Audio not available
+    }
+  }, []);
+
   // Timer countdown
   useEffect(() => {
     if (!timerRunning || timerSeconds === null || timerSeconds <= 0) return;
@@ -62,6 +88,7 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
         if (prev === null || prev <= 1) {
           setTimerRunning(false);
           setTimerDone(true);
+          playBeep();
           return 0;
         }
         return prev - 1;
@@ -69,7 +96,7 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerRunning, timerSeconds]);
+  }, [timerRunning, timerSeconds, playBeep]);
 
   const handleExit = useCallback(() => {
     setShowExitConfirm(true);
@@ -189,6 +216,8 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
         {timerSeconds !== null && (
           <button
             onClick={toggleTimer}
+            aria-live="assertive"
+            aria-label={timerDone ? "Timer done" : `Timer: ${formatTime(timerSeconds)}`}
             className={cn(
               "px-3 py-1.5 rounded-full text-xs font-bold min-h-[32px] flex items-center gap-1.5 transition-all",
               timerDone

@@ -33,6 +33,7 @@ export function getRecipeContext(id: string): { type: "protein"; parent: Protein
 export interface Recipe {
   id: string;
   recipeName: string;
+  emoji?: string;
   ingredients: string[];
   cookTime: string;
   difficulty?: string;
@@ -120,6 +121,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "chicken-rice-broccoli",
         recipeName: "One-Pan Chicken, Rice & Broccoli",
+        emoji: "🍗",
         ingredients: ["chicken breast", "instant/minute rice", "frozen broccoli"],
         whyThesePairings: "Rice is a top-5 pantry staple in NA. Frozen broccoli is the #1 frozen vegetable purchased. This is the classic American meal-prep combo.",
         cookTime: "25 minutes",
@@ -143,6 +145,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "chicken-tortilla-cheese",
         recipeName: "Chicken Quesadillas",
+        emoji: "🌮",
         ingredients: ["chicken breast", "flour tortillas (large)", "shredded Mexican cheese blend"],
         whyThesePairings: "Tortillas are a top-10 grocery item. Shredded cheese is in 82% of households. Quesadillas are the quintessential lazy-cook meal.",
         cookTime: "15 minutes",
@@ -167,6 +170,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "chicken-pasta-jarredsauce",
         recipeName: "Chicken Pasta with Marinara",
+        emoji: "🍝",
         ingredients: ["chicken breast", "pasta (penne or rotini)", "jarred marinara sauce"],
         whyThesePairings: "Pasta is a top pantry staple. Jarred marinara sauce is a top-20 grocery item. Classic comfort food combo.",
         cookTime: "25 minutes",
@@ -189,6 +193,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "chicken-bbqsauce-buns",
         recipeName: "BBQ Chicken Sandwiches",
+        emoji: "🥪",
         ingredients: ["chicken breast", "BBQ sauce (bottle)", "hamburger or brioche buns"],
         whyThesePairings: "BBQ sauce is a top-5 condiment in America. Buns are a bread aisle staple. This mimics pulled chicken BBQ with zero effort.",
         cookTime: "20 minutes",
@@ -222,6 +227,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "beef-pasta-jarredsauce",
         recipeName: "Spaghetti with Meat Sauce",
+        emoji: "🍝",
         ingredients: ["ground beef", "spaghetti", "jarred marinara sauce"],
         whyThesePairings: "The single most iconic easy American dinner. Spaghetti + jarred sauce are in nearly every pantry.",
         cookTime: "20 minutes",
@@ -244,6 +250,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "beef-tortilla-cheese",
         recipeName: "Beef Tacos",
+        emoji: "🌮",
         ingredients: ["ground beef", "taco shells or flour tortillas", "shredded cheddar or Mexican blend cheese"],
         whyThesePairings: "Tacos are the #1 most searched easy dinner in NA. Taco shells and shredded cheese are grocery staples.",
         cookTime: "15 minutes",
@@ -266,6 +273,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "beef-buns-cheese",
         recipeName: "Smash Burgers",
+        emoji: "🍔",
         ingredients: ["ground beef", "hamburger buns", "American cheese slices or cheddar slices"],
         whyThesePairings: "Burgers are the most iconic American meal. Buns and cheese slices are always at the store. This method needs zero skill.",
         cookTime: "10 minutes",
@@ -289,6 +297,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "beef-rice-frozenveg",
         recipeName: "Beef & Rice Skillet",
+        emoji: "🍚",
         ingredients: ["ground beef", "instant/minute rice", "frozen mixed vegetables"],
         whyThesePairings: "Rice and frozen veggies are both top-10 pantry/freezer staples. This is the classic budget one-pan dinner.",
         cookTime: "20 minutes",
@@ -323,6 +332,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "eggs-bread-cheese",
         recipeName: "Egg & Cheese Sandwich",
+        emoji: "🍳",
         ingredients: ["eggs", "sandwich bread or English muffins", "American cheese slices or cheddar slices"],
         whyThesePairings: "Bread is a $10 billion/year grocery item in the US. Cheese is in 82% of households. This is the fastest hot meal in existence.",
         cookTime: "5 minutes",
@@ -346,6 +356,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "eggs-tortilla-cheese",
         recipeName: "Breakfast Burritos",
+        emoji: "🌯",
         ingredients: ["eggs", "flour tortillas (large)", "shredded Mexican cheese blend"],
         whyThesePairings: "Tortillas + cheese = quesadilla territory. Add scrambled eggs and you have the most popular grab-and-go breakfast in America. Works for dinner too.",
         cookTime: "10 minutes",
@@ -370,6 +381,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "eggs-rice-soysauce",
         recipeName: "Egg Fried Rice",
+        emoji: "🍚",
         ingredients: ["eggs", "instant rice (or leftover rice)", "frozen peas and carrots mix"],
         whyThesePairings: "Rice is a pantry staple, soy sauce is free (pantry staple). Frozen peas/carrots are a freezer door classic. This is the cheapest delicious meal you can make.",
         cookTime: "15 minutes",
@@ -394,6 +406,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "eggs-banana-oats",
         recipeName: "3-Ingredient Banana Pancakes",
+        emoji: "🥞",
         ingredients: ["eggs", "ripe bananas", "quick oats"],
         whyThesePairings: "Bananas are the #1 most purchased grocery item in America. Oats are a top pantry staple. These pancakes went viral for a reason \u2014 no flour needed.",
         cookTime: "15 minutes",
@@ -428,6 +441,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "tuna-bread-lettuce",
         recipeName: "Classic Tuna Salad Sandwich",
+        emoji: "🥪",
         ingredients: ["canned tuna", "sandwich bread", "celery or lettuce"],
         whyThesePairings: "Bread + mayo (free pantry staple) + tuna is arguably the most common workday lunch in America. Zero cooking required.",
         cookTime: "5 minutes (no cooking)",
@@ -450,6 +464,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "tuna-pasta-mayo",
         recipeName: "Tuna Pasta Salad",
+        emoji: "🍝",
         ingredients: ["canned tuna", "pasta (elbow macaroni or rotini)", "frozen peas"],
         whyThesePairings: "Pasta + canned tuna is a pantry-only meal millions of North Americans grew up on. Frozen peas add color and nutrition with zero prep.",
         cookTime: "15 minutes",
@@ -473,6 +488,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "tuna-crackers-cheese",
         recipeName: "Tuna Melt Nachos",
+        emoji: "🧀",
         ingredients: ["canned tuna", "Ritz-style crackers or tortilla chips", "shredded cheddar cheese"],
         whyThesePairings: "Snack foods are bought by 76% of households. Crackers/chips + cheese + tuna = a snack-dinner that requires almost zero effort.",
         cookTime: "8 minutes",
@@ -507,6 +523,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "bacon-eggs-cheese",
         recipeName: "Bacon, Egg & Cheese (the BEC)",
+        emoji: "🥓",
         ingredients: ["bacon", "eggs", "American cheese slices or cheddar"],
         whyThesePairings: "The BEC is America's #1 breakfast sandwich. Eggs and cheese are both top-5 grocery purchases. This is diner food at home.",
         cookTime: "10 minutes",
@@ -529,6 +546,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "bacon-pasta-cream",
         recipeName: "Poor Man's Carbonara",
+        emoji: "🍝",
         ingredients: ["bacon", "spaghetti or any long pasta", "parmesan cheese (grated, from the green can is fine)"],
         whyThesePairings: "Pasta is a universal pantry staple. Real carbonara is bacon + egg + cheese + pasta \u2014 and eggs are a free staple when paired with bacon here.",
         cookTime: "20 minutes",
@@ -553,6 +571,7 @@ export const PROTEINS: Protein[] = [
       {
         id: "bacon-bread-tomato",
         recipeName: "BLT (Bacon Lettuce Tomato)",
+        emoji: "🥪",
         ingredients: ["bacon", "sandwich bread (white, toasted)", "tomato"],
         whyThesePairings: "The BLT is one of the top-5 sandwiches in America. Tomatoes are a top-selling produce item.",
         cookTime: "10 minutes",
@@ -589,8 +608,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
       {
         id: "ramen-egg-greenonion",
         recipeName: "Upgraded Ramen",
+        emoji: "🍜",
         ingredients: ["instant ramen", "egg", "green onions"],
         cookTime: "8 minutes",
+        difficulty: "beginner",
+        equipment: ["pot"],
+        servings: 1,
         instructions: [
           "Cook ramen noodles per package directions with the seasoning packet. Keep it a bit soupy.",
           "While broth is simmering, crack an egg directly into the pot.",
@@ -613,8 +636,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
       {
         id: "soup-cheese-bread",
         recipeName: "Tomato Soup & Grilled Cheese",
+        emoji: "🍲",
         ingredients: ["Campbell's tomato soup", "sandwich bread", "American or cheddar cheese slices"],
         cookTime: "15 minutes",
+        difficulty: "beginner",
+        equipment: ["pot", "skillet"],
+        servings: 2,
         instructions: [
           "Heat soup in a pot per can directions. Use milk instead of water for creamier soup.",
           "While soup heats: butter one side of 2 bread slices each.",
@@ -629,8 +656,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
       {
         id: "mushroom-soup-chicken-rice",
         recipeName: "Creamy Mushroom Chicken & Rice",
+        emoji: "🍄",
         ingredients: ["Campbell's cream of mushroom soup", "chicken breast (or canned chicken)", "instant rice"],
         cookTime: "30 minutes",
+        difficulty: "easy",
+        equipment: ["9x13 baking dish", "oven"],
+        servings: 2,
         instructions: [
           "Preheat oven to 375\u00b0F.",
           "Pour 1 can cream of mushroom soup + 1/2 can water into a 9x13 baking dish. Stir.",
@@ -651,8 +682,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
       {
         id: "mac-hotdog",
         recipeName: "Hot Dog Mac & Cheese",
+        emoji: "🌭",
         ingredients: ["boxed mac & cheese", "hot dogs"],
         cookTime: "15 minutes",
+        difficulty: "beginner",
+        equipment: ["pot", "skillet"],
+        servings: 2,
         instructions: [
           "Make boxed mac & cheese per box directions.",
           "While pasta boils: slice 3-4 hot dogs into coins.",
@@ -664,8 +699,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
       {
         id: "mac-broccoli-chicken",
         recipeName: "Loaded Chicken Broccoli Mac",
+        emoji: "🧀",
         ingredients: ["boxed mac & cheese", "frozen broccoli", "canned chicken (or rotisserie chicken)"],
         cookTime: "18 minutes",
+        difficulty: "beginner",
+        equipment: ["pot"],
+        servings: 2,
         instructions: [
           "Make boxed mac & cheese per box directions.",
           "During the last 3 minutes of pasta boiling, add 1 cup frozen broccoli florets directly to the pasta water.",
@@ -685,8 +724,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
       {
         id: "beans-rice-salsa",
         recipeName: "Beans & Rice Bowl",
+        emoji: "🫘",
         ingredients: ["canned black beans", "instant rice", "jarred salsa"],
         cookTime: "12 minutes",
+        difficulty: "beginner",
+        equipment: ["pot", "small pot"],
+        servings: 2,
         instructions: [
           "Cook 1 cup instant rice per package directions.",
           "While rice cooks: drain and rinse 1 can of black beans. Pour into a small pot.",

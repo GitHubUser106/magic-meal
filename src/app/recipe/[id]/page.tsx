@@ -25,7 +25,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
     ? context.parent.emoji
     : context?.type === "base"
     ? context.parent.emoji
-    : undefined;
+    : recipe.emoji;
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,7 +60,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
       <div className="max-w-lg mx-auto px-4 py-6">
         {/* Hero */}
         <div className="text-center mb-6">
-          {emoji && <div className="text-5xl mb-3">{emoji}</div>}
+          {emoji && <span className="text-5xl mb-3 block" role="img" aria-label={recipe.recipeName}>{emoji}</span>}
           <h1 className="text-2xl font-bold">{recipe.recipeName}</h1>
           {context && (
             <p className="text-sm text-muted-foreground mt-1">
