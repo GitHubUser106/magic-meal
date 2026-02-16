@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Magic Meal",
+  title: "MagicMeal",
   description: "Real meals from stuff you already have",
 };
 

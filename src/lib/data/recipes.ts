@@ -1,5 +1,5 @@
 // ============================================================
-// Magic Meal — Recipe Data
+// MagicMeal — Recipe Data
 // Source: three-ingredient-meals-data.json
 // ============================================================
 

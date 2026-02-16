@@ -61,7 +61,7 @@ export default function OnboardingPage() {
         {step === 0 && (
           <div className="flex-1 flex flex-col items-center justify-center text-center">
             <span className="text-6xl mb-6">✨</span>
-            <h1 className="text-2xl font-bold mb-3">Welcome to Magic Meal</h1>
+            <h1 className="text-2xl font-bold mb-3">Welcome to MagicMeal</h1>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-[280px] mb-8">
               Real meals from stuff you already have. Let&apos;s personalize your experience in 30 seconds.
             </p>

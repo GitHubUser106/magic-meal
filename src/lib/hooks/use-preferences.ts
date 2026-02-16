@@ -56,7 +56,7 @@ export function usePreferences() {
   }, []);
 
   const clearAllData = useCallback(() => {
-    // Clear all Magic Meal localStorage keys
+    // Clear all MagicMeal localStorage keys
     const keys = [
       "magic_meal_preferences",
       "magic_meal_saved_recipes",

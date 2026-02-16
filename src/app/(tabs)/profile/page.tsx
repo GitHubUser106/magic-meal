@@ -54,7 +54,7 @@ export default function ProfilePage() {
       {/* Stats */}
       <section className="mb-6">
         <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-          Your Magic Meal
+          Your MagicMeal
         </h2>
         <div className="grid grid-cols-2 gap-3">
           <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card">
@@ -163,7 +163,7 @@ export default function ProfilePage() {
       </section>
 
       <p className="text-xs text-muted-foreground text-center">
-        Magic Meal v2.0
+        MagicMeal v2.0
       </p>
     </div>
   );

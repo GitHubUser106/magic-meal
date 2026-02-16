@@ -1,5 +1,5 @@
 // ============================================================
-// Magic Meal — Ingredient Category Mapping
+// MagicMeal — Ingredient Category Mapping
 // Maps common ingredient strings to grocery aisle categories
 // ============================================================
 

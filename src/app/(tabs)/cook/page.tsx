@@ -76,7 +76,7 @@ export default function CookPage() {
       <div className="mb-5">
         <h1 className="text-2xl font-bold">
           <span className="mr-2">&#x2728;</span>
-          Magic Meal
+          MagicMeal
         </h1>
         <p className="text-sm text-muted-foreground mt-0.5">
           Protein + 2 ingredients. Dinner, done.
