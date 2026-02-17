@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { PROTEINS, DOCTOR_IT_UP_BASES, getAllRecipes, type Protein, type DoctorItUpBase, type Recipe } from "@/lib/data/recipes";
 import { RecipeCard } from "@/components/recipe-card";
 import { Card, CardContent } from "@/components/ui/card";
@@ -32,13 +33,29 @@ const VEGGIE_QUICK_PICK_IDS = [
 const VEGGIE_ONLY_IDS = ["black-beans", "cheese", "tofu"];
 
 export default function CookPage() {
+  const router = useRouter();
   const [timeFilter, setTimeFilter] = useState<number | null>(null);
+  const [diceAnimating, setDiceAnimating] = useState(false);
   const { toggleSave, isSaved } = useSavedRecipes();
   const { preferences } = usePreferences();
 
   const isVegetarian = preferences.dietary === "vegetarian";
 
   const allRecipes = useMemo(() => getAllRecipes(), []);
+
+  const handleSurpriseMe = useCallback(() => {
+    const pool = allRecipes.filter((recipe) => {
+      if (isVegetarian && !recipe.tags?.includes("vegetarian")) return false;
+      if (timeFilter && parseInt(recipe.cookTime) > timeFilter) return false;
+      return true;
+    });
+    if (pool.length === 0) return;
+    setDiceAnimating(true);
+    setTimeout(() => {
+      const random = pool[Math.floor(Math.random() * pool.length)];
+      router.push(`/recipe/${random.id}`);
+    }, 600);
+  }, [allRecipes, isVegetarian, timeFilter, router]);
 
   const quickPickIds = isVegetarian ? VEGGIE_QUICK_PICK_IDS : DEFAULT_QUICK_PICK_IDS;
 
@@ -81,6 +98,22 @@ export default function CookPage() {
           Protein + 2 ingredients. Dinner, done.
         </p>
       </div>
+
+      {/* Surprise Me */}
+      <button
+        onClick={handleSurpriseMe}
+        className="w-full mb-5 px-4 py-3 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/50 text-sm font-semibold text-amber-800 hover:bg-amber-100/60 active:scale-[0.98] transition-all min-h-[44px] flex items-center justify-center gap-2"
+      >
+        <span
+          className={cn(
+            "inline-block text-lg",
+            diceAnimating && "animate-dice-shake"
+          )}
+        >
+          &#x1F3B2;
+        </span>
+        Surprise Me
+      </button>
 
       {/* Time Picker */}
       <div className="flex items-center gap-2 mb-5">

@@ -68,7 +68,7 @@ export const FREE_PANTRY_STAPLES = {
   basics: ["salt", "black pepper", "cooking oil (vegetable, canola, or olive)", "butter"],
   condiments: ["ketchup", "mustard (yellow)", "mayonnaise", "soy sauce", "hot sauce (Tabasco/Frank's/Sriracha)"],
   sweeteners: ["sugar", "honey"],
-  driedSpices: ["garlic powder", "onion powder", "paprika", "Italian seasoning", "chili powder", "cumin"],
+  driedSpices: ["garlic powder", "onion powder"],
   baking: ["all-purpose flour", "baking powder"],
   liquids: ["chicken or beef bouillon cubes", "vinegar (white or apple cider)"],
 };
@@ -154,7 +154,7 @@ export const PROTEINS: Protein[] = [
         equipment: ["large skillet"],
         servings: 2,
         instructions: [
-          "Slice 1 chicken breast into very thin strips. Season with salt, pepper, chili powder, and cumin.",
+          "Slice 1 chicken breast into very thin strips. Season with salt, pepper, and garlic powder.",
           "Heat oil in skillet over medium-high. Cook chicken strips 4-5 minutes until done. Remove to plate and roughly chop.",
           "Wipe skillet. Place 1 large tortilla flat in skillet over medium heat.",
           "Sprinkle a generous handful of shredded cheese on one half of the tortilla. Add chicken on top of cheese. Add more cheese on top of chicken.",
@@ -166,6 +166,7 @@ export const PROTEINS: Protein[] = [
         proTips: [
           "Use a rotisserie chicken from the store deli to skip the cooking step entirely \u2014 just shred it up.",
           "Medium heat is key. Too high and the tortilla burns before cheese melts.",
+          "If you have chili powder and cumin, add a half teaspoon of each when seasoning the chicken. Makes a huge difference.",
         ],
       },
       {
@@ -180,7 +181,7 @@ export const PROTEINS: Protein[] = [
         servings: 3,
         instructions: [
           "Boil a pot of salted water. Cook pasta according to box directions. Drain.",
-          "While pasta cooks: cut 2 chicken breasts into bite-sized pieces. Season with salt, pepper, garlic powder, and Italian seasoning.",
+          "While pasta cooks: cut 2 chicken breasts into bite-sized pieces. Season with salt, pepper, and garlic powder.",
           "Heat oil in skillet over medium-high. Cook chicken 6-7 minutes until cooked through.",
           "Pour half a jar of marinara sauce into the skillet with the chicken. Stir. Let simmer 3 minutes.",
           "Add drained pasta to the skillet. Toss everything together.",
@@ -189,6 +190,7 @@ export const PROTEINS: Protein[] = [
         proTips: [
           "Save a cup of pasta water before draining \u2014 add a splash if the dish seems dry.",
           "This is even faster with pre-cooked frozen grilled chicken strips from the freezer section.",
+          "A pinch of Italian seasoning on the chicken makes it taste restaurant-quality.",
         ],
       },
       {
@@ -321,13 +323,14 @@ export const PROTEINS: Protein[] = [
           "Boil a big pot of salted water. Cook spaghetti per box directions. Drain.",
           "While pasta cooks: crumble 1 lb ground beef into a skillet over medium-high heat.",
           "Cook beef 6-8 minutes, breaking it into small pieces with a spoon, until no longer pink. Drain fat if there is a lot (tilt pan, spoon it out).",
-          "Season beef with salt, pepper, garlic powder, and Italian seasoning.",
+          "Season beef with salt, pepper, and garlic powder.",
           "Pour in half to full jar of marinara sauce. Stir. Let simmer 5 minutes.",
           "Serve sauce over spaghetti.",
         ],
         proTips: [
           "A little sugar (1/2 tsp) in the sauce cuts acidity. Many jarred sauces already have it.",
           "Save pasta water \u2014 a splash loosens up the sauce perfectly.",
+          "Italian seasoning on the beef while it cooks takes this from good to great.",
         ],
       },
       {
@@ -342,13 +345,14 @@ export const PROTEINS: Protein[] = [
         servings: 4,
         instructions: [
           "Crumble 1 lb ground beef into a skillet over medium-high heat. Cook 6-8 minutes until browned. Drain excess fat.",
-          "Season with chili powder (2 tsp), cumin (1 tsp), garlic powder (1 tsp), salt, and pepper. Stir.",
+          "Season with garlic powder (1 tsp), salt, and pepper. Stir.",
           "Add 1/4 cup water. Stir and let simmer 2-3 minutes until it thickens slightly.",
           "Warm taco shells in oven (325\u00b0F, 5 min) or microwave tortillas 15 seconds each.",
           "Fill shells with beef. Top with cheese.",
           "Add whatever else you have: salsa, sour cream, hot sauce, lettuce, tomato.",
         ],
         proTips: [
+          "If you have chili powder (2 tsp) and cumin (1 tsp), add them when seasoning the beef. It makes a huge difference, but the recipe works without them.",
           "Buy a $1 packet of taco seasoning to replace the individual spices if you want. That becomes a pantry staple.",
           "Soft flour tortillas are more forgiving than hard taco shells (which break).",
         ],
@@ -412,12 +416,13 @@ export const PROTEINS: Protein[] = [
         servings: 4,
         instructions: [
           "Brown ground beef in a skillet over medium-high heat, breaking it up with a spoon, about 5-6 minutes. Drain any extra grease.",
-          "Add about half a cup of ketchup and a splash of Worcestershire sauce if you have it (pantry freebie). Stir everything together.",
+          "Add about half a cup of ketchup. Stir everything together.",
           "Let it simmer on low for 5 minutes so the flavors come together and the sauce thickens up.",
           "Spoon onto hamburger buns. Eat with napkins \u2014 you'll need them.",
         ],
         proTips: [
           "A splash of mustard mixed in with the ketchup makes it taste like the real deal.",
+          "A splash of Worcestershire sauce in with the ketchup adds a ton of depth if you have it.",
           "Toast your buns in the skillet for 30 seconds to keep them from getting soggy.",
         ],
       },
@@ -561,12 +566,13 @@ export const PROTEINS: Protein[] = [
           "Push veggies to one side. Crack 2-3 eggs into the empty side. Scramble them quickly with your spatula.",
           "Before eggs are fully set, add rice on top. Stir everything together vigorously.",
           "Add 2-3 tablespoons soy sauce. Stir-fry another 1-2 minutes.",
-          "Season with pepper. Optional: drizzle sesame oil or hot sauce.",
+          "Season with pepper. Optional: drizzle hot sauce.",
         ],
         proTips: [
           "Day-old rice from the fridge makes MUCH better fried rice than fresh. The drier the better.",
           "High heat is essential. If your pan isn't sizzling, it's not hot enough.",
           "Keep everything moving in the pan \u2014 fried rice should never sit still.",
+          "A drizzle of sesame oil at the end makes it taste like takeout.",
         ],
       },
       {
@@ -667,7 +673,7 @@ export const PROTEINS: Protein[] = [
         servings: 2,
         tags: ["vegetarian"],
         instructions: [
-          "Pour one can of diced tomatoes into a skillet over medium heat. Season with salt, pepper, and a pinch of garlic powder or cumin if you have it.",
+          "Pour one can of diced tomatoes into a skillet over medium heat. Season with salt, pepper, and a pinch of garlic powder.",
           "Let the tomatoes simmer for 3-4 minutes until slightly thickened.",
           "Use a spoon to make 3-4 small wells in the sauce. Crack an egg into each well.",
           "Cover with a lid. Cook on medium-low for 5-6 minutes until egg whites are set but yolks are still a little runny.",
@@ -677,6 +683,31 @@ export const PROTEINS: Protein[] = [
           "Rotel (diced tomatoes with green chiles) adds great flavor with zero extra work.",
           "If you want the yolks fully cooked, cover and cook an extra 2 minutes.",
           "This is basically shakshuka \u2014 it sounds fancy but it's just eggs in tomato sauce.",
+          "A pinch of cumin in the tomato sauce makes it taste amazing if you have it.",
+        ],
+      },
+      {
+        id: "egg-banana-butter-pancakes",
+        recipeName: "Banana Butter Pancakes",
+        emoji: "\u{1F95E}",
+        ingredients: ["eggs", "ripe banana", "butter"],
+        cookTime: "10 minutes",
+        difficulty: "easy",
+        equipment: ["skillet or non-stick pan"],
+        servings: 2,
+        tags: ["vegetarian"],
+        instructions: [
+          "Peel the banana and mash it in a bowl with a fork until smooth-ish. A few lumps are fine.",
+          "Crack 2 eggs into the bowl. Mix everything together until combined. The batter will be thinner than normal pancake batter \u2014 that's normal.",
+          "Melt butter in a skillet or non-stick pan over medium-low heat. Pour small circles of batter \u2014 keep them small (about 3 inches) because they're delicate and hard to flip if they're big.",
+          "Cook for about 2 minutes until you see little bubbles on top and the edges look set. Flip carefully \u2014 use a thin spatula. Cook another minute on the other side.",
+          "Stack them up. They're done when they're golden brown on both sides.",
+        ],
+        proTips: [
+          "The riper the banana, the sweeter these taste. Brown spotty bananas are perfect.",
+          "Keep them small \u2014 these are not regular pancakes and big ones will fall apart when you flip them.",
+          "A tiny splash of vanilla extract makes these taste incredible if you have it.",
+          "Top with a drizzle of honey, maple syrup, or just eat them plain.",
         ],
       },
     ],
@@ -794,10 +825,11 @@ export const PROTEINS: Protein[] = [
           "Cook instant rice according to the package. Scoop into a bowl.",
           "Drain the tuna. Mix it with a spoonful of mayo and a squeeze of sriracha (start small \u2014 you can always add more).",
           "Scoop the spicy tuna on top of the rice.",
-          "Drizzle a little more sriracha on top and sprinkle with soy sauce if you want. Add a splash of sesame oil if you have it.",
+          "Drizzle a little more sriracha on top and sprinkle with soy sauce if you want.",
         ],
         proTips: [
           "This is basically a budget sushi bowl. Seriously.",
+          "A splash of sesame oil takes this from good to restaurant-level if you have it.",
           "If you have any green onions, slice them thin and sprinkle on top. Game changer.",
         ],
       },
@@ -1009,13 +1041,14 @@ export const PROTEINS: Protein[] = [
         tags: ["vegetarian"],
         instructions: [
           "Drain and rinse a can of black beans. Heat them in a small pot over medium heat with a splash of water.",
-          "Mash some of the beans with a fork \u2014 leave some whole for texture. Season with salt, pepper, garlic powder, and cumin.",
+          "Mash some of the beans with a fork \u2014 leave some whole for texture. Season with salt, pepper, and garlic powder.",
           "Warm taco shells according to the package.",
           "Fill shells with beans, top with cheese. Add salsa, sour cream, or lettuce if you have them.",
         ],
         proTips: [
           "Seasoned black beans honestly give ground beef a run for its money in tacos.",
           "Corn taco shells > flour for this one if you have the choice.",
+          "A half teaspoon of cumin mixed into the beans takes these to another level.",
         ],
       },
       {
@@ -1278,10 +1311,11 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
           "While broth is simmering, crack an egg directly into the pot.",
           "Let egg cook 2 minutes without stirring for a poached egg, or stir it in for egg-drop style.",
           "Pour into a bowl. Chop green onions and scatter on top.",
-          "Optional: drizzle soy sauce and/or hot sauce (Sriracha). Squeeze of sesame oil if you have it.",
+          "Optional: drizzle soy sauce and/or hot sauce (Sriracha).",
         ],
         proTips: [
           "For a soft-boiled egg instead: boil 6.5 min, ice bath, peel, halve, place on top. Instagram-worthy.",
+          "A splash of sesame oil in the bowl before serving makes it taste like a real ramen shop.",
         ],
       },
       {
@@ -1349,9 +1383,9 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
   },
   {
     id: "canned-soup-upgrade",
-    name: "Campbell's Soup",
-    emoji: "\u{1F372}",
-    whyIncluded: "Most iconic canned soup brand in NA. Cream of mushroom and tomato are the top sellers.",
+    name: "Canned Soup",
+    emoji: "\u{1F96B}",
+    whyIncluded: "Canned soup is a pantry staple in most households. Cream of mushroom and tomato are the top sellers.",
     recipes: [
       {
         id: "soup-cheese-bread",
@@ -1500,9 +1534,12 @@ export const DOCTOR_IT_UP_BASES: DoctorItUpBase[] = [
           "Cook 1 cup instant rice per package directions.",
           "While rice cooks: drain and rinse 1 can of black beans. Pour into a small pot.",
           "Add 2-3 big spoonfuls of salsa to the beans. Heat over medium, stirring, for 3-4 minutes.",
-          "Season with cumin, chili powder, salt, and pepper.",
+          "Season with salt, pepper, and garlic powder.",
           "Scoop rice into a bowl. Top with saucy beans.",
           "Optional: top with shredded cheese, sour cream, hot sauce.",
+        ],
+        proTips: [
+          "If you have cumin and chili powder, a half teaspoon of each in the beans makes a massive difference.",
         ],
       },
       {

@@ -124,3 +124,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes dice-shake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(20deg) scale(1.1); }
+  40% { transform: rotate(-20deg) scale(1.1); }
+  60% { transform: rotate(15deg) scale(1.05); }
+  80% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-dice-shake {
+  animation: dice-shake 0.5s ease-in-out;
+}

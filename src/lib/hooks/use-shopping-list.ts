@@ -10,6 +10,7 @@ export interface ShoppingItem {
   recipeId: string;
   recipeName: string;
   checked: boolean;
+  isCustom?: boolean;
 }
 
 interface StoredData {
@@ -97,6 +98,33 @@ export function useShoppingList() {
     saveData({ items: [] });
   }, []);
 
+  const addCustomItem = useCallback((name: string) => {
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    setItems((prev) => {
+      const newItem: ShoppingItem = {
+        ingredient: trimmed,
+        recipeId: "custom",
+        recipeName: "Your item",
+        checked: false,
+        isCustom: true,
+      };
+      const next = [newItem, ...prev];
+      saveData({ items: next });
+      return next;
+    });
+  }, []);
+
+  const removeCustomItem = useCallback((ingredient: string) => {
+    setItems((prev) => {
+      const next = prev.filter(
+        (item) => !(item.isCustom && item.ingredient === ingredient)
+      );
+      saveData({ items: next });
+      return next;
+    });
+  }, []);
+
   const getUncheckedCount = useCallback(
     () => items.filter((item) => !item.checked).length,
     [items]
@@ -111,5 +139,7 @@ export function useShoppingList() {
     clearChecked,
     clearAll,
     getUncheckedCount,
+    addCustomItem,
+    removeCustomItem,
   };
 }
