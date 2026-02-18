@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePreferences } from "@/lib/hooks/use-preferences";
+import { track } from "@vercel/analytics";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 
@@ -38,6 +39,7 @@ export default function OnboardingPage() {
 
   function handleComplete() {
     completeOnboarding({ dietary, householdSize, cookingComfort });
+    track("onboarding_completed");
     router.push("/cook");
   }
 

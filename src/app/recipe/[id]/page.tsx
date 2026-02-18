@@ -1,7 +1,8 @@
 "use client";
 
-import { use } from "react";
+import { use, useEffect } from "react";
 import { notFound } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { getRecipeById, getRecipeContext } from "@/lib/data/recipes";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
 import { useShoppingList } from "@/lib/hooks/use-shopping-list";
@@ -24,6 +25,13 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
   if (!recipe) {
     notFound();
   }
+
+  useEffect(() => {
+    track("recipe_opened", {
+      recipeId: recipe.id,
+      recipeName: recipe.recipeName,
+    });
+  }, [recipe.id, recipe.recipeName]);
 
   const emoji = context?.type === "protein"
     ? context.parent.emoji

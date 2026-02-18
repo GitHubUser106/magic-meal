@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { PROTEINS, DOCTOR_IT_UP_BASES, getAllRecipes, type Protein, type DoctorItUpBase, type Recipe } from "@/lib/data/recipes";
+import { track } from "@vercel/analytics";
 import { RecipeCard } from "@/components/recipe-card";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -50,6 +51,7 @@ export default function CookPage() {
       return true;
     });
     if (pool.length === 0) return;
+    track("surprise_me_used");
     setDiceAnimating(true);
     setTimeout(() => {
       const random = pool[Math.floor(Math.random() * pool.length)];

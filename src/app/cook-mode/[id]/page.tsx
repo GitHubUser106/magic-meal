@@ -3,6 +3,7 @@
 import { use, useState, useEffect, useCallback, useRef } from "react";
 import { notFound, useRouter } from "next/navigation";
 import { getRecipeById } from "@/lib/data/recipes";
+import { track } from "@vercel/analytics";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
 import { X, ChevronRight, ChevronLeft, Timer, Heart, Home, Pause, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -110,6 +111,10 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
     notFound();
   }
 
+  useEffect(() => {
+    track("cook_mode_started", { recipeId: recipe.id });
+  }, [recipe.id]);
+
   const totalSteps = recipe.instructions.length;
   const isDone = currentStep >= totalSteps;
   const stepText = isDone ? "" : recipe.instructions[currentStep];
@@ -130,6 +135,12 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
     setTimerRunning(false);
     setTimerDone(false);
   }
+
+  useEffect(() => {
+    if (isDone) {
+      track("cook_mode_completed", { recipeId: recipe.id });
+    }
+  }, [isDone, recipe.id]);
 
   // Done screen
   if (isDone) {

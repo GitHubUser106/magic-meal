@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getRecipeById } from "@/lib/data/recipes";
+import { track } from "@vercel/analytics";
 
 const STORAGE_KEY = "magic_meal_shopping_list";
 
@@ -56,6 +57,7 @@ export function useShoppingList() {
 
       const next = [...prev, ...newItems];
       saveData({ items: next });
+      track("shopping_list_add", { recipeId });
       return next;
     });
   }, []);

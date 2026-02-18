@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePreferences } from "@/lib/hooks/use-preferences";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
 import { useShoppingList } from "@/lib/hooks/use-shopping-list";
-import { Heart, ShoppingCart, Utensils, Users, ChefHat, RotateCcw, Trash2 } from "lucide-react";
+import { Heart, ShoppingCart, Utensils, Users, ChefHat, RotateCcw, Trash2, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 const DIETARY_LABELS: Record<string, string> = {
@@ -126,6 +126,17 @@ export default function ProfilePage() {
               <p className="text-xs text-muted-foreground">Reset preferences and start fresh</p>
             </div>
           </button>
+
+          <a
+            href="mailto:johntomchick@gmail.com?subject=MagicMeal%20Beta%20Feedback"
+            className="flex items-center gap-3 w-full p-4 rounded-lg border border-border bg-card hover:bg-muted/30 transition-colors text-left min-h-[48px]"
+          >
+            <MessageCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold">Send Feedback</h3>
+              <p className="text-xs text-muted-foreground">Tell us what you think</p>
+            </div>
+          </a>
 
           {showConfirm ? (
             <div className="p-4 rounded-lg border-2 border-red-300 bg-red-50">

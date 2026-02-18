@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { track } from "@vercel/analytics";
 
 const STORAGE_KEY = "magic_meal_saved_recipes";
 
@@ -18,10 +19,10 @@ export function useSavedRecipes() {
 
   const toggleSave = useCallback((id: string) => {
     setSavedIds((prev) => {
-      const next = prev.includes(id)
-        ? prev.filter((x) => x !== id)
-        : [...prev, id];
+      const isSaving = !prev.includes(id);
+      const next = isSaving ? [...prev, id] : prev.filter((x) => x !== id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      if (isSaving) track("recipe_saved", { recipeId: id });
       return next;
     });
   }, []);
