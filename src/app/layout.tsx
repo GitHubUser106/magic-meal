@@ -30,8 +30,7 @@ export const metadata: Metadata = {
     title: "MagicMeal — 3 Ingredients. Dinner Done.",
     description:
       "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 20 minutes.",
-    // TODO: Uncomment once domain is purchased and live
-    // url: "https://magicmeal.app",
+    url: "https://magicmeal.app",
     siteName: "MagicMeal",
     type: "website",
     locale: "en_US",
