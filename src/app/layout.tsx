@@ -35,15 +35,14 @@ export const metadata: Metadata = {
     siteName: "MagicMeal",
     type: "website",
     locale: "en_US",
-    // Add this once you create a /public/og-image.png (1200x630px):
-    // images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "MagicMeal" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "MagicMeal" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "MagicMeal — 3 Ingredients. Dinner Done.",
     description:
       "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 20 minutes.",
-    // images: ["/og-image.png"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.ico",
