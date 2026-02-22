@@ -136,6 +136,11 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
     setTimerDone(false);
   }
 
+  // Scroll to top when step changes so the new step is always visible
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentStep]);
+
   useEffect(() => {
     if (isDone) {
       track("cook_mode_completed", { recipeId: recipe.id });
@@ -258,7 +263,7 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
 
       {/* Step content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 pb-4">
-        <p className="text-lg leading-relaxed text-center max-w-md">
+        <p className="text-2xl leading-relaxed text-center max-w-md font-medium">
           {stepText}
         </p>
 
