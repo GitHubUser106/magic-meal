@@ -49,26 +49,26 @@ export default function ProfilePage() {
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-xl font-bold mb-6">Profile</h1>
+      <h1 className="text-2xl font-bold mb-6">Profile</h1>
 
       {/* Stats */}
       <section className="mb-6">
-        <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
           Your MagicMeal
         </h2>
         <div className="grid grid-cols-2 gap-3">
           <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card">
             <Heart className="w-5 h-5 text-red-500 flex-shrink-0" />
             <div>
-              <p className="text-lg font-bold">{savedIds.length}</p>
-              <p className="text-xs text-muted-foreground">Saved recipes</p>
+              <p className="text-xl font-bold">{savedIds.length}</p>
+              <p className="text-sm text-muted-foreground">Saved recipes</p>
             </div>
           </div>
           <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card">
             <ShoppingCart className="w-5 h-5 text-amber-500 flex-shrink-0" />
             <div>
-              <p className="text-lg font-bold">{uncheckedCount}</p>
-              <p className="text-xs text-muted-foreground">Shopping items</p>
+              <p className="text-xl font-bold">{uncheckedCount}</p>
+              <p className="text-sm text-muted-foreground">Shopping items</p>
             </div>
           </div>
         </div>
@@ -76,15 +76,15 @@ export default function ProfilePage() {
 
       {/* Preferences */}
       <section className="mb-6">
-        <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
           Preferences
         </h2>
         <div className="space-y-2">
           <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card">
             <Utensils className="w-5 h-5 text-muted-foreground flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-sm font-semibold">Dietary</h3>
-              <p className="text-xs text-muted-foreground">
+              <h3 className="text-base font-semibold">Dietary</h3>
+              <p className="text-sm text-muted-foreground">
                 {DIETARY_LABELS[preferences.dietary] ?? preferences.dietary}
               </p>
             </div>
@@ -92,8 +92,8 @@ export default function ProfilePage() {
           <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card">
             <Users className="w-5 h-5 text-muted-foreground flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-sm font-semibold">Household size</h3>
-              <p className="text-xs text-muted-foreground">
+              <h3 className="text-base font-semibold">Household size</h3>
+              <p className="text-sm text-muted-foreground">
                 {HOUSEHOLD_LABELS[preferences.householdSize] ?? `${preferences.householdSize} people`}
               </p>
             </div>
@@ -101,8 +101,8 @@ export default function ProfilePage() {
           <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card">
             <ChefHat className="w-5 h-5 text-muted-foreground flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-sm font-semibold">Cooking comfort</h3>
-              <p className="text-xs text-muted-foreground">
+              <h3 className="text-base font-semibold">Cooking comfort</h3>
+              <p className="text-sm text-muted-foreground">
                 {COMFORT_LABELS[preferences.cookingComfort] ?? preferences.cookingComfort}
               </p>
             </div>
@@ -112,7 +112,7 @@ export default function ProfilePage() {
 
       {/* Actions */}
       <section className="mb-8">
-        <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
           Actions
         </h2>
         <div className="space-y-2">
@@ -122,8 +122,8 @@ export default function ProfilePage() {
           >
             <RotateCcw className="w-5 h-5 text-muted-foreground flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-sm font-semibold">Redo Onboarding</h3>
-              <p className="text-xs text-muted-foreground">Reset preferences and start fresh</p>
+              <h3 className="text-base font-semibold">Redo Onboarding</h3>
+              <p className="text-sm text-muted-foreground">Reset preferences and start fresh</p>
             </div>
           </button>
 
@@ -133,8 +133,8 @@ export default function ProfilePage() {
           >
             <MessageCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-sm font-semibold">Send Feedback</h3>
-              <p className="text-xs text-muted-foreground">Tell us what you think</p>
+              <h3 className="text-base font-semibold">Send Feedback</h3>
+              <p className="text-sm text-muted-foreground">Tell us what you think</p>
             </div>
           </a>
 
@@ -166,7 +166,7 @@ export default function ProfilePage() {
               <Trash2 className="w-5 h-5 text-red-500 flex-shrink-0" />
               <div className="flex-1">
                 <h3 className="text-sm font-semibold text-red-600">Clear All Data</h3>
-                <p className="text-xs text-muted-foreground">Remove everything and start over</p>
+                <p className="text-sm text-muted-foreground">Remove everything and start over</p>
               </div>
             </button>
           )}

@@ -55,25 +55,25 @@ export function RecipeCard({ recipe, emoji, onSave, isSaved = false, compact = f
           )}
 
           {/* Title */}
-          <h3 className="font-semibold text-sm pr-8">{recipe.recipeName}</h3>
+          <h3 className="font-semibold text-base pr-8">{recipe.recipeName}</h3>
 
           {/* Ingredients */}
-          <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+          <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
             {recipe.ingredients.join(" + ")}
           </p>
 
           {/* Badges */}
           <div className="flex items-center gap-1.5 mt-2 flex-wrap">
-            <Badge variant="secondary" className="text-[10px]">
+            <Badge variant="secondary" className="text-xs">
               {recipe.cookTime}
             </Badge>
             {recipe.difficulty && (
-              <Badge variant="outline" className="text-[10px]">
+              <Badge variant="outline" className="text-xs">
                 {recipe.difficulty}
               </Badge>
             )}
             {recipe.servings && (
-              <Badge variant="outline" className="text-[10px]">
+              <Badge variant="outline" className="text-xs">
                 {recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}
               </Badge>
             )}

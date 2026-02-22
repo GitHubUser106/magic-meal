@@ -52,7 +52,7 @@ export default function ListPage() {
   if (items.length === 0 && !newItem) {
     return (
       <div className="px-4 py-5 max-w-lg mx-auto">
-        <h1 className="text-xl font-bold mb-4">Shopping List</h1>
+        <h1 className="text-2xl font-bold mb-4">Shopping List</h1>
 
         {/* Add item input — always visible */}
         <div className="flex gap-2 mb-6">
@@ -62,7 +62,7 @@ export default function ListPage() {
             onChange={(e) => setNewItem(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Add an item..."
-            className="flex-1 px-3 py-2 rounded-lg border border-border bg-card text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
+            className="flex-1 px-3 py-2 rounded-lg border border-border bg-card text-base min-h-[44px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
           />
           <button
             onClick={handleAddItem}
@@ -74,8 +74,8 @@ export default function ListPage() {
 
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <ShoppingCart className="w-12 h-12 text-muted-foreground/40 mb-4" />
-          <h2 className="text-base font-semibold mb-1">No items yet</h2>
-          <p className="text-sm text-muted-foreground mb-6 max-w-[250px]">
+          <h2 className="text-lg font-semibold mb-1">No items yet</h2>
+          <p className="text-base text-muted-foreground mb-6 max-w-[250px]">
             Add your own items above, or add ingredients from any recipe.
           </p>
           <Link
@@ -92,8 +92,8 @@ export default function ListPage() {
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-bold">Shopping List</h1>
-        <span className="text-sm text-muted-foreground">
+        <h1 className="text-2xl font-bold">Shopping List</h1>
+        <span className="text-base text-muted-foreground">
           {uncheckedCount} item{uncheckedCount !== 1 ? "s" : ""} remaining
         </span>
       </div>
@@ -106,7 +106,7 @@ export default function ListPage() {
           onChange={(e) => setNewItem(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Add an item..."
-          className="flex-1 px-3 py-2 rounded-lg border border-border bg-card text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
+          className="flex-1 px-3 py-2 rounded-lg border border-border bg-card text-base min-h-[44px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
         />
         <button
           onClick={handleAddItem}
@@ -140,14 +140,14 @@ export default function ListPage() {
         {/* Custom items section */}
         {customItems.length > 0 && (
           <div>
-            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
               <span>&#x1F4DD;</span>
               Your Items
             </h2>
             <ul className="space-y-1">
               {customItems.map((item, i) => (
                 <li key={`custom-${item.ingredient}-${i}`}>
-                  <div className="flex items-center gap-3 text-sm min-h-[44px] py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
+                  <div className="flex items-center gap-3 text-base min-h-[44px] py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
                     <label className="flex items-center gap-3 flex-1 cursor-pointer">
                       <input
                         type="checkbox"
@@ -183,14 +183,14 @@ export default function ListPage() {
           const categoryItems = grouped[category];
           return (
             <div key={category}>
-              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 <span>{info.emoji}</span>
                 {info.label}
               </h2>
               <ul className="space-y-1">
                 {categoryItems.map((item, i) => (
                   <li key={`${item.recipeId}-${item.ingredient}-${i}`}>
-                    <label className="flex items-start gap-3 text-sm cursor-pointer min-h-[44px] py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
+                    <label className="flex items-start gap-3 text-base cursor-pointer min-h-[44px] py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
                       <input
                         type="checkbox"
                         checked={item.checked}
@@ -204,7 +204,7 @@ export default function ListPage() {
                         )}>
                           {item.ingredient}
                         </span>
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-sm text-muted-foreground">
                           {item.recipeName}
                         </span>
                       </div>

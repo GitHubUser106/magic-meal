@@ -73,9 +73,9 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         {/* Hero */}
         <div className="text-center mb-6">
           {emoji && <span className="text-5xl mb-3 block" role="img" aria-label={recipe.recipeName}>{emoji}</span>}
-          <h1 className="text-2xl font-bold">{recipe.recipeName}</h1>
+          <h1 className="text-3xl font-bold">{recipe.recipeName}</h1>
           {context && (
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-base text-muted-foreground mt-1">
               {context.type === "protein"
                 ? `${context.parent.name} recipe`
                 : `${context.parent.name} upgrade`}
@@ -87,18 +87,18 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="flex items-center gap-1.5">
             <Clock className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-medium">{recipe.cookTime}</span>
+            <span className="text-base font-medium">{recipe.cookTime}</span>
           </div>
           {recipe.difficulty && (
             <div className="flex items-center gap-1.5">
               <ChefHat className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm font-medium">{recipe.difficulty}</span>
+              <span className="text-base font-medium">{recipe.difficulty}</span>
             </div>
           )}
           {recipe.servings && (
             <div className="flex items-center gap-1.5">
               <Users className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm font-medium">
+              <span className="text-base font-medium">
                 {recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}
               </span>
             </div>
@@ -128,7 +128,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
           }}
           disabled={inList}
           className={cn(
-            "flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium transition-all mb-8 min-h-[48px]",
+            "flex items-center justify-center gap-2 w-full py-3 rounded-xl text-base font-medium transition-all mb-8 min-h-[48px]",
             inList
               ? "bg-muted text-muted-foreground cursor-default"
               : "bg-muted/50 border border-border text-foreground hover:bg-muted active:scale-[0.98]"
@@ -149,14 +149,14 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
 
         {/* Ingredients */}
         <section className="mb-6">
-          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+          <h2 className="text-base font-semibold text-muted-foreground uppercase tracking-wide mb-3">
             What you need
           </h2>
           <div className="space-y-2">
             {recipe.ingredients.map((ingredient, i) => (
               <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
-                <span className="text-amber-500 font-bold text-sm mt-0.5">{i + 1}</span>
-                <span className="text-sm">{ingredient}</span>
+                <span className="text-amber-500 font-bold text-base mt-0.5">{i + 1}</span>
+                <span className="text-base">{ingredient}</span>
               </div>
             ))}
           </div>
@@ -165,12 +165,12 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         {/* Equipment */}
         {recipe.equipment && recipe.equipment.length > 0 && (
           <section className="mb-6">
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+            <h2 className="text-base font-semibold text-muted-foreground uppercase tracking-wide mb-3">
               Equipment
             </h2>
             <div className="flex flex-wrap gap-2">
               {recipe.equipment.map((item, i) => (
-                <Badge key={i} variant="secondary" className="text-xs">
+                <Badge key={i} variant="secondary" className="text-sm">
                   {item}
                 </Badge>
               ))}
@@ -180,16 +180,16 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
 
         {/* Instructions */}
         <section className="mb-6">
-          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+          <h2 className="text-base font-semibold text-muted-foreground uppercase tracking-wide mb-3">
             Steps
           </h2>
           <div className="space-y-4">
             {recipe.instructions.map((step, i) => (
               <div key={i} className="flex gap-3">
-                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold">
+                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold">
                   {i + 1}
                 </div>
-                <p className="text-sm leading-relaxed pt-0.5">{step}</p>
+                <p className="text-base leading-relaxed pt-0.5">{step}</p>
               </div>
             ))}
           </div>
@@ -201,11 +201,11 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
             <div className="rounded-xl bg-amber-50 border border-amber-200 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Lightbulb className="w-4 h-4 text-amber-600" />
-                <h2 className="text-sm font-semibold text-amber-800">Pro Tips</h2>
+                <h2 className="text-base font-semibold text-amber-800">Pro Tips</h2>
               </div>
               <ul className="space-y-2">
                 {recipe.proTips.map((tip, i) => (
-                  <li key={i} className="text-sm text-amber-900 leading-relaxed">
+                  <li key={i} className="text-base text-amber-900 leading-relaxed">
                     {tip}
                   </li>
                 ))}
@@ -218,8 +218,8 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         {recipe.whyThesePairings && (
           <section className="mb-8">
             <div className="rounded-xl bg-muted/30 p-4">
-              <h2 className="text-sm font-semibold mb-2">Why these pairings work</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <h2 className="text-base font-semibold mb-2">Why these pairings work</h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
                 {recipe.whyThesePairings}
               </p>
             </div>

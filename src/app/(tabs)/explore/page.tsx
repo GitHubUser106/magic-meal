@@ -16,7 +16,7 @@ type Filter =
 
 export default function ExplorePage() {
   return (
-    <Suspense fallback={<div className="px-4 py-5 max-w-lg mx-auto"><h1 className="text-xl font-bold mb-4">Explore Recipes</h1></div>}>
+    <Suspense fallback={<div className="px-4 py-5 max-w-lg mx-auto"><h1 className="text-2xl font-bold mb-4">Explore Recipes</h1></div>}>
       <ExploreContent />
     </Suspense>
   );
@@ -97,8 +97,8 @@ function ExploreContent() {
           {filteredRecipes.emoji && (
             <span className="text-2xl">{filteredRecipes.emoji}</span>
           )}
-          <h2 className="text-lg font-bold">{filteredRecipes.title}</h2>
-          <span className="text-sm text-muted-foreground">
+          <h2 className="text-xl font-bold">{filteredRecipes.title}</h2>
+          <span className="text-base text-muted-foreground">
             ({filteredRecipes.recipes.length})
           </span>
         </div>
@@ -126,7 +126,7 @@ function ExploreContent() {
   // Main explore view
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-xl font-bold mb-4">Explore Recipes</h1>
+      <h1 className="text-2xl font-bold mb-4">Explore Recipes</h1>
 
       {/* Search */}
       <form onSubmit={handleSearch} className="mb-6">
@@ -144,7 +144,7 @@ function ExploreContent() {
 
       {/* By Protein */}
       <section className="mb-6">
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+        <h2 className="text-base font-semibold text-muted-foreground mb-3">
           By protein
         </h2>
         <div className="space-y-1">
@@ -155,8 +155,8 @@ function ExploreContent() {
               className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors min-h-[44px]"
             >
               <span className="text-xl">{protein.emoji}</span>
-              <span className="text-sm font-medium flex-1 text-left">{protein.name}</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-base font-medium flex-1 text-left">{protein.name}</span>
+              <span className="text-sm text-muted-foreground">
                 {protein.pairings.length} recipes
               </span>
             </button>
@@ -166,7 +166,7 @@ function ExploreContent() {
 
       {/* By Time */}
       <section className="mb-6">
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+        <h2 className="text-base font-semibold text-muted-foreground mb-3">
           By time
         </h2>
         <div className="flex gap-2">
@@ -174,7 +174,7 @@ function ExploreContent() {
             <button
               key={mins}
               onClick={() => setFilter({ type: "time", minutes: mins })}
-              className="flex-1 p-3 rounded-lg border border-border bg-card hover:border-amber-300 transition-colors text-sm font-medium min-h-[44px]"
+              className="flex-1 p-3 rounded-lg border border-border bg-card hover:border-amber-300 transition-colors text-base font-medium min-h-[44px]"
             >
               {mins} min or less
             </button>
@@ -184,7 +184,7 @@ function ExploreContent() {
 
       {/* Doctor It Up */}
       <section className="mb-6">
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+        <h2 className="text-base font-semibold text-muted-foreground mb-3">
           Doctor it up
         </h2>
         <div className="space-y-1">
@@ -195,8 +195,8 @@ function ExploreContent() {
               className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors min-h-[44px]"
             >
               <span className="text-xl">{base.emoji}</span>
-              <span className="text-sm font-medium flex-1 text-left">{base.name}</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-base font-medium flex-1 text-left">{base.name}</span>
+              <span className="text-sm text-muted-foreground">
                 {base.recipes.length} {base.recipes.length === 1 ? "recipe" : "recipes"}
               </span>
             </button>

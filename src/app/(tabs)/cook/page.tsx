@@ -96,7 +96,7 @@ export default function CookPage() {
           <span className="mr-2">&#x2728;</span>
           MagicMeal
         </h1>
-        <p className="text-sm text-muted-foreground mt-0.5">
+        <p className="text-base text-muted-foreground mt-0.5">
           Protein + 2 ingredients. Dinner, done.
         </p>
       </div>
@@ -104,7 +104,7 @@ export default function CookPage() {
       {/* Surprise Me */}
       <button
         onClick={handleSurpriseMe}
-        className="w-full mb-5 px-4 py-3 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/50 text-sm font-semibold text-amber-800 hover:bg-amber-100/60 active:scale-[0.98] transition-all min-h-[44px] flex items-center justify-center gap-2"
+        className="w-full mb-5 px-4 py-3 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/50 text-base font-semibold text-amber-800 hover:bg-amber-100/60 active:scale-[0.98] transition-all min-h-[44px] flex items-center justify-center gap-2"
       >
         <span
           className={cn(
@@ -119,13 +119,13 @@ export default function CookPage() {
 
       {/* Time Picker */}
       <div className="flex items-center gap-2 mb-5">
-        <span className="text-sm text-muted-foreground">How much time?</span>
+        <span className="text-base text-muted-foreground">How much time?</span>
         {[10, 20].map((mins) => (
           <button
             key={mins}
             onClick={() => setTimeFilter(timeFilter === mins ? null : mins)}
             className={cn(
-              "px-3 py-1.5 rounded-full text-xs font-medium border transition-all min-h-[32px]",
+              "px-3 py-1.5 rounded-full text-sm font-medium border transition-all min-h-[32px]",
               timeFilter === mins
                 ? "bg-amber-100 border-amber-400 text-amber-800"
                 : "bg-card border-border text-muted-foreground hover:border-amber-200"
@@ -147,7 +147,7 @@ export default function CookPage() {
       {/* Quick Picks Carousel */}
       {quickPicks.length > 0 && (
         <section className="mb-6">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+          <h2 className="text-base font-semibold text-muted-foreground mb-3">
             Quick picks
           </h2>
           <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
@@ -167,7 +167,7 @@ export default function CookPage() {
 
       {/* Doctor It Up Carousel */}
       <section className="mb-6">
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+        <h2 className="text-base font-semibold text-muted-foreground mb-3">
           Doctor it up
         </h2>
         <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
@@ -180,10 +180,10 @@ export default function CookPage() {
               <Card className="hover:border-amber-300 transition-all active:scale-[0.97]">
                 <CardContent className="p-3 flex flex-col items-center gap-1">
                   <span className="text-2xl">{base.emoji}</span>
-                  <span className="text-xs font-semibold text-center leading-tight">
+                  <span className="text-sm font-semibold text-center leading-tight">
                     {base.name}
                   </span>
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     {base.recipes.length} {base.recipes.length === 1 ? "upgrade" : "upgrades"}
                   </span>
                 </CardContent>
@@ -196,7 +196,7 @@ export default function CookPage() {
       {/* Pick Your Protein */}
       {visibleProteins.length > 0 && (
         <section className="mb-6">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+          <h2 className="text-base font-semibold text-muted-foreground mb-3">
             Pick your protein
           </h2>
           <div className="grid grid-cols-3 gap-2">
@@ -207,10 +207,10 @@ export default function CookPage() {
                 className="flex flex-col items-center gap-1 p-3 rounded-xl border-2 border-border bg-card hover:border-amber-300 hover:bg-amber-50/50 active:scale-[0.97] transition-all min-h-[80px]"
               >
                 <span className="text-2xl">{protein.emoji}</span>
-                <span className="text-xs font-semibold leading-tight text-center">
+                <span className="text-sm font-semibold leading-tight text-center">
                   {protein.name}
                 </span>
-                <span className="text-[10px] text-muted-foreground">
+                <span className="text-xs text-muted-foreground">
                   {protein.pairings.length} meals
                 </span>
               </Link>
