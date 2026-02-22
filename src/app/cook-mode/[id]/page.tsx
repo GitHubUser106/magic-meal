@@ -136,11 +136,6 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
     setTimerDone(false);
   }
 
-  // Scroll to top when step changes so the new step is always visible
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentStep]);
-
   useEffect(() => {
     if (isDone) {
       track("cook_mode_completed", { recipeId: recipe.id });
@@ -189,7 +184,7 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="h-[100dvh] bg-background flex flex-col overflow-hidden">
       {/* Exit confirmation overlay */}
       {showExitConfirm && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-6">
@@ -262,8 +257,8 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
       </div>
 
       {/* Step content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-4">
-        <p className="text-2xl leading-relaxed text-center max-w-md font-medium">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-4 overflow-y-auto">
+        <p className="text-3xl leading-snug text-center max-w-md font-medium">
           {stepText}
         </p>
 
