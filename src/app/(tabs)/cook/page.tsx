@@ -144,6 +144,32 @@ export default function CookPage() {
         )}
       </div>
 
+      {/* Pick Your Protein */}
+      {visibleProteins.length > 0 && (
+        <section className="mb-6">
+          <h2 className="text-base font-semibold text-muted-foreground mb-3">
+            Pick your protein
+          </h2>
+          <div className="grid grid-cols-3 gap-2">
+            {visibleProteins.map((protein) => (
+              <Link
+                key={protein.id}
+                href={`/explore?protein=${protein.id}`}
+                className="flex flex-col items-center gap-1 p-3 rounded-xl border-2 border-border bg-card hover:border-amber-300 hover:bg-amber-50/50 active:scale-[0.97] transition-all min-h-[80px]"
+              >
+                <span className="text-2xl">{protein.emoji}</span>
+                <span className="text-sm font-semibold leading-tight text-center">
+                  {protein.name}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  {protein.pairings.length} meals
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Quick Picks Carousel */}
       {quickPicks.length > 0 && (
         <section className="mb-6">
@@ -192,32 +218,6 @@ export default function CookPage() {
           ))}
         </div>
       </section>
-
-      {/* Pick Your Protein */}
-      {visibleProteins.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-base font-semibold text-muted-foreground mb-3">
-            Pick your protein
-          </h2>
-          <div className="grid grid-cols-3 gap-2">
-            {visibleProteins.map((protein) => (
-              <Link
-                key={protein.id}
-                href={`/explore?protein=${protein.id}`}
-                className="flex flex-col items-center gap-1 p-3 rounded-xl border-2 border-border bg-card hover:border-amber-300 hover:bg-amber-50/50 active:scale-[0.97] transition-all min-h-[80px]"
-              >
-                <span className="text-2xl">{protein.emoji}</span>
-                <span className="text-sm font-semibold leading-tight text-center">
-                  {protein.name}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  {protein.pairings.length} meals
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
