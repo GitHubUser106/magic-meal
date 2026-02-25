@@ -180,7 +180,7 @@ export default function CookPage() {
           <div className="relative -mx-4">
             <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide px-4">
               {quickPicks.map((recipe) => (
-                <div key={recipe.id} className="min-w-[200px] snap-start">
+                <div key={recipe.id} className="min-w-[240px] snap-start">
                   <RecipeCard
                     recipe={recipe}
                     onSave={toggleSave}
