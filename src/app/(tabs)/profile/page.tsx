@@ -128,7 +128,7 @@ export default function ProfilePage() {
           </button>
 
           <a
-            href="mailto:johntomchick@gmail.com?subject=MagicMeal%20Beta%20Feedback"
+            href="mailto:getmagicmeal@gmail.com?subject=MagicMeal%20Beta%20Feedback"
             className="flex items-center gap-3 w-full p-4 rounded-lg border border-border bg-card hover:bg-muted/30 transition-colors text-left min-h-[48px]"
           >
             <MessageCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
