@@ -177,8 +177,8 @@ export default function CookPage() {
           <h2 className="text-base font-semibold text-muted-foreground mb-3">
             Quick picks
           </h2>
-          <div className="relative">
-            <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+          <div className="relative -mx-4">
+            <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide px-4">
               {quickPicks.map((recipe) => (
                 <div key={recipe.id} className="min-w-[200px] snap-start">
                   <RecipeCard
@@ -190,7 +190,7 @@ export default function CookPage() {
                 </div>
               ))}
             </div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent" />
           </div>
         </section>
       )}
@@ -200,8 +200,8 @@ export default function CookPage() {
         <h2 className="text-base font-semibold text-muted-foreground mb-3">
           Doctor it up
         </h2>
-        <div className="relative">
-          <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+        <div className="relative -mx-4">
+          <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide px-4">
             {DOCTOR_IT_UP_BASES.map((base) => (
               <Link
                 key={base.id}
@@ -222,7 +222,7 @@ export default function CookPage() {
               </Link>
             ))}
           </div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent" />
         </div>
       </section>
     </div>
