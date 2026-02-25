@@ -6,6 +6,7 @@ import { usePreferences } from "@/lib/hooks/use-preferences";
 import { track } from "@vercel/analytics";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
+import { MagicMealLogo } from "@/components/magic-meal-logo";
 
 const DIETARY_OPTIONS = [
   { value: "no-preference", label: "I eat everything", emoji: "🍽️" },
@@ -62,7 +63,7 @@ export default function OnboardingPage() {
         {/* Step 0: Welcome */}
         {step === 0 && (
           <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <span className="text-6xl mb-6">✨</span>
+            <MagicMealLogo variant="icon" size={72} className="mb-6" />
             <h1 className="text-2xl font-bold mb-3">Welcome to MagicMeal</h1>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-[280px] mb-8">
               Real meals from stuff you already have. Let&apos;s personalize your experience in 30 seconds.

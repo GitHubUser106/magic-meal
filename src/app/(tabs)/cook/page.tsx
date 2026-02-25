@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
 import { usePreferences } from "@/lib/hooks/use-preferences";
 import { cn } from "@/lib/utils";
+import { MagicMealLogo } from "@/components/magic-meal-logo";
 import Link from "next/link";
 
 // Quick picks for non-vegetarian users
@@ -92,8 +93,8 @@ export default function CookPage() {
     <div className="px-4 py-5 max-w-lg mx-auto">
       {/* Header */}
       <div className="mb-5">
-        <h1 className="text-2xl font-bold">
-          <span className="mr-2">&#x2728;</span>
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <MagicMealLogo variant="icon" size={28} />
           MagicMeal
         </h1>
         <p className="text-base text-muted-foreground mt-0.5">

@@ -1,0 +1,16 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Plate -->
+  <circle cx="22" cy="25" r="17" fill="#FDE68A"/>
+  <circle cx="22" cy="25" r="17" fill="none" stroke="#D97706" stroke-width="2"/>
+  <circle cx="22" cy="25" r="13" fill="none" stroke="#FBBF24" stroke-width="0.75" opacity="0.5"/>
+  <!-- Fork -->
+  <g transform="translate(22,24) rotate(-40)">
+    <rect x="-1.5" y="4" width="3" height="16" rx="1.5" fill="#92400E"/>
+    <rect x="-5" y="1" width="10" height="3" rx="1" fill="#92400E"/>
+    <rect x="-4.5" y="-11" width="2" height="12" rx="1" fill="#92400E"/>
+    <rect x="-1" y="-11" width="2" height="12" rx="1" fill="#92400E"/>
+    <rect x="2.5" y="-11" width="2" height="12" rx="1" fill="#92400E"/>
+  </g>
+  <!-- Sparkle -->
+  <path d="M38 3 L39.5 6.5 L43 8 L39.5 9.5 L38 13 L36.5 9.5 L33 8 L36.5 6.5 Z" fill="#F59E0B"/>
+</svg>
