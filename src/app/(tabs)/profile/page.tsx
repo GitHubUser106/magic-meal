@@ -127,8 +127,19 @@ export default function ProfilePage() {
             </div>
           </button>
 
-          <a
-            href="mailto:getmagicmeal@gmail.com?subject=MagicMeal%20Beta%20Feedback"
+          <button
+            onClick={() => {
+              const email = "getmagicmeal@gmail.com";
+              const subject = encodeURIComponent("MagicMeal Beta Feedback");
+              // Try mailto first (works on mobile), fall back to Gmail compose (works on desktop)
+              const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${email}&su=${subject}`;
+              const mailtoUrl = `mailto:${email}?subject=${subject}`;
+              const w = window.open(mailtoUrl, "_self");
+              // If mailto didn't navigate away after a short delay, open Gmail
+              setTimeout(() => {
+                if (!document.hidden) window.open(gmailUrl, "_blank");
+              }, 500);
+            }}
             className="flex items-center gap-3 w-full p-4 rounded-lg border border-border bg-card hover:bg-muted/30 transition-colors text-left min-h-[48px]"
           >
             <MessageCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
@@ -136,7 +147,7 @@ export default function ProfilePage() {
               <h3 className="text-base font-semibold">Send Feedback</h3>
               <p className="text-sm text-muted-foreground">Tell us what you think</p>
             </div>
-          </a>
+          </button>
 
           {showConfirm ? (
             <div className="p-4 rounded-lg border-2 border-red-300 bg-red-50">

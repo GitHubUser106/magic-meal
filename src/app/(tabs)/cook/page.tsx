@@ -176,17 +176,20 @@ export default function CookPage() {
           <h2 className="text-base font-semibold text-muted-foreground mb-3">
             Quick picks
           </h2>
-          <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
-            {quickPicks.map((recipe) => (
-              <div key={recipe.id} className="min-w-[200px] snap-start">
-                <RecipeCard
-                  recipe={recipe}
-                  onSave={toggleSave}
-                  isSaved={isSaved(recipe.id)}
-                  compact
-                />
-              </div>
-            ))}
+          <div className="relative">
+            <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+              {quickPicks.map((recipe) => (
+                <div key={recipe.id} className="min-w-[200px] snap-start">
+                  <RecipeCard
+                    recipe={recipe}
+                    onSave={toggleSave}
+                    isSaved={isSaved(recipe.id)}
+                    compact
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent" />
           </div>
         </section>
       )}
@@ -196,26 +199,29 @@ export default function CookPage() {
         <h2 className="text-base font-semibold text-muted-foreground mb-3">
           Doctor it up
         </h2>
-        <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
-          {DOCTOR_IT_UP_BASES.map((base) => (
-            <Link
-              key={base.id}
-              href={`/explore?base=${base.id}`}
-              className="min-w-[140px] snap-start"
-            >
-              <Card className="hover:border-amber-300 transition-all active:scale-[0.97]">
-                <CardContent className="p-3 flex flex-col items-center gap-1">
-                  <span className="text-2xl">{base.emoji}</span>
-                  <span className="text-sm font-semibold text-center leading-tight">
-                    {base.name}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {base.recipes.length} {base.recipes.length === 1 ? "upgrade" : "upgrades"}
-                  </span>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+        <div className="relative">
+          <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+            {DOCTOR_IT_UP_BASES.map((base) => (
+              <Link
+                key={base.id}
+                href={`/explore?base=${base.id}`}
+                className="min-w-[140px] snap-start"
+              >
+                <Card className="hover:border-amber-300 transition-all active:scale-[0.97]">
+                  <CardContent className="p-3 flex flex-col items-center gap-1">
+                    <span className="text-2xl">{base.emoji}</span>
+                    <span className="text-sm font-semibold text-center leading-tight">
+                      {base.name}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {base.recipes.length} {base.recipes.length === 1 ? "upgrade" : "upgrades"}
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent" />
         </div>
       </section>
     </div>
