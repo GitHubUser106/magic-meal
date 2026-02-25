@@ -47,15 +47,15 @@ export function RecipeCard({ recipe, emoji, onSave, isSaved = false, compact = f
             </button>
           )}
 
-          {/* Emoji */}
-          {displayEmoji && (
-            <span className="text-2xl mb-2 block" role="img" aria-label={recipe.recipeName}>
-              {displayEmoji}
-            </span>
-          )}
-
-          {/* Title */}
-          <h3 className="font-semibold text-base pr-8">{recipe.recipeName}</h3>
+          {/* Emoji + Title */}
+          <div className="flex items-center gap-2 pr-8">
+            {displayEmoji && (
+              <span className="text-2xl shrink-0" role="img" aria-label={recipe.recipeName}>
+                {displayEmoji}
+              </span>
+            )}
+            <h3 className="font-semibold text-base">{recipe.recipeName}</h3>
+          </div>
 
           {/* Ingredients */}
           <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
