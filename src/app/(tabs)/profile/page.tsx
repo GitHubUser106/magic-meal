@@ -130,7 +130,7 @@ export default function ProfilePage() {
           <button
             onClick={() => {
               const email = "getmagicmeal@gmail.com";
-              const subject = encodeURIComponent("MagicMeal Beta Feedback");
+              const subject = encodeURIComponent("MagicMeal Feedback");
               // Try mailto first (works on mobile), fall back to Gmail compose (works on desktop)
               const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${email}&su=${subject}`;
               const mailtoUrl = `mailto:${email}?subject=${subject}`;

@@ -5,7 +5,11 @@ import { useSearchParams } from "next/navigation";
 import { PROTEINS, DOCTOR_IT_UP_BASES, getAllRecipes, type Recipe } from "@/lib/data/recipes";
 import { RecipeCard } from "@/components/recipe-card";
 import { useSavedRecipes } from "@/lib/hooks/use-saved-recipes";
+import { usePreferences } from "@/lib/hooks/use-preferences";
 import { Search, ChevronLeft } from "lucide-react";
+
+const RED_MEAT_IDS = ["ground-beef"];
+const VEGGIE_ONLY_IDS = ["black-beans", "cheese", "tofu"];
 
 type Filter =
   | { type: "none" }
@@ -36,6 +40,20 @@ function ExploreContent() {
   );
   const [searchQuery, setSearchQuery] = useState("");
   const { toggleSave, isSaved } = useSavedRecipes();
+  const { preferences } = usePreferences();
+
+  const isVegetarian = preferences.dietary === "vegetarian";
+  const excludesRedMeat = ["no-red-meat", "pescatarian", "vegetarian"].includes(preferences.dietary);
+
+  const visibleProteins = useMemo(() => {
+    if (isVegetarian) {
+      return PROTEINS.filter((p) => p.id === "eggs" || VEGGIE_ONLY_IDS.includes(p.id));
+    }
+    if (excludesRedMeat) {
+      return PROTEINS.filter((p) => !VEGGIE_ONLY_IDS.includes(p.id) && !RED_MEAT_IDS.includes(p.id));
+    }
+    return PROTEINS;
+  }, [isVegetarian, excludesRedMeat]);
 
   const allRecipes = useMemo(() => getAllRecipes(), []);
 
@@ -148,7 +166,7 @@ function ExploreContent() {
           By protein
         </h2>
         <div className="space-y-1">
-          {PROTEINS.map((protein) => (
+          {visibleProteins.map((protein) => (
             <button
               key={protein.id}
               onClick={() => setFilter({ type: "protein", id: protein.id })}

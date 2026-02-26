@@ -184,7 +184,7 @@ export default function CookModePage({ params }: { params: Promise<{ id: string 
   }
 
   return (
-    <div className="h-[100dvh] bg-background flex flex-col overflow-hidden">
+    <div className="h-screen supports-[height:100dvh]:h-[100dvh] bg-background flex flex-col overflow-hidden">
       {/* Exit confirmation overlay */}
       {showExitConfirm && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-6">

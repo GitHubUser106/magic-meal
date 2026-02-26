@@ -24,12 +24,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "MagicMeal — 3 Ingredients. Dinner Done.",
   description:
-    "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 20 minutes.",
+    "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 25 minutes.",
   applicationName: "MagicMeal",
   openGraph: {
     title: "MagicMeal — 3 Ingredients. Dinner Done.",
     description:
-      "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 20 minutes.",
+      "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 25 minutes.",
     url: "https://magicmeal.app",
     siteName: "MagicMeal",
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MagicMeal — 3 Ingredients. Dinner Done.",
     description:
-      "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 20 minutes.",
+      "Real meals from stuff you already have. Pick 3 ingredients, get a recipe, start cooking in under 25 minutes.",
     images: ["/og-image.png"],
   },
   icons: {
