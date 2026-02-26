@@ -100,7 +100,8 @@ export default function CookPage() {
   }, [allRecipes, timeFilter, quickPickIds]);
 
   // Build visible protein list based on dietary preference
-  // Non-vegetarian: all proteins except veggie-only (Chicken, Ground Beef, Eggs, Canned Tuna, Bacon = 5)
+  // Default: all proteins except veggie-only (Chicken, Ground Beef, Eggs, Canned Tuna, Bacon = 5)
+  // No-red-meat / Pescatarian: all proteins except red meat (Chicken, Eggs, Canned Tuna, Bacon, Black Beans, Cheese, Tofu = 7)
   // Vegetarian: Eggs + veggie-only proteins (Eggs, Black Beans, Cheese, Tofu = 4)
   const visibleProteins = useMemo(() => {
     const filtered = timeFilter
@@ -114,7 +115,7 @@ export default function CookPage() {
       return filtered.filter((p) => p.id === "eggs" || VEGGIE_ONLY_IDS.includes(p.id));
     }
     if (excludesRedMeat) {
-      return filtered.filter((p) => !VEGGIE_ONLY_IDS.includes(p.id) && !RED_MEAT_IDS.includes(p.id));
+      return filtered.filter((p) => !RED_MEAT_IDS.includes(p.id));
     }
     return filtered.filter((p) => !VEGGIE_ONLY_IDS.includes(p.id));
   }, [timeFilter, isVegetarian, excludesRedMeat]);

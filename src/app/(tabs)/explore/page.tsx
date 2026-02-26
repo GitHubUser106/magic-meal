@@ -50,7 +50,7 @@ function ExploreContent() {
       return PROTEINS.filter((p) => p.id === "eggs" || VEGGIE_ONLY_IDS.includes(p.id));
     }
     if (excludesRedMeat) {
-      return PROTEINS.filter((p) => !VEGGIE_ONLY_IDS.includes(p.id) && !RED_MEAT_IDS.includes(p.id));
+      return PROTEINS.filter((p) => !RED_MEAT_IDS.includes(p.id));
     }
     return PROTEINS;
   }, [isVegetarian, excludesRedMeat]);
