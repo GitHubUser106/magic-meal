@@ -34,8 +34,11 @@ const VEGGIE_QUICK_PICK_IDS = [
 // Proteins only shown for vegetarian users (Eggs is universal — shown for everyone)
 const VEGGIE_ONLY_IDS = ["black-beans", "cheese", "tofu"];
 
-// Red meat protein IDs — hidden for "no-red-meat" and "pescatarian" users
+// Red meat protein IDs — hidden for "no-red-meat" users
 const RED_MEAT_IDS = ["ground-beef"];
+
+// All meat protein IDs — hidden for "pescatarian" users (fish + plants only)
+const MEAT_IDS = ["chicken", "ground-beef", "bacon"];
 
 // Quick picks for no-red-meat users — swap beef recipe for chicken
 const NO_RED_MEAT_QUICK_PICK_IDS = [
@@ -44,6 +47,15 @@ const NO_RED_MEAT_QUICK_PICK_IDS = [
   "cheese-grilled-tomato-soup",
   "chicken-tortilla-cheese",
   "tofu-stirfry-rice",
+];
+
+// Quick picks for pescatarian users — fish, eggs, and plant-based only
+const PESCATARIAN_QUICK_PICK_IDS = [
+  "tuna-melt",
+  "eggs-rice-soysauce",
+  "cheese-grilled-tomato-soup",
+  "tofu-stirfry-rice",
+  "beans-tacos",
 ];
 
 export default function CookPage() {
@@ -67,10 +79,18 @@ export default function CookPage() {
       .some((p) => p.pairings.some((r) => r.id === recipe.id));
   }, []);
 
+  // Check if a recipe belongs to any meat protein (for pescatarian filtering)
+  const isMeatRecipe = useCallback((recipe: Recipe) => {
+    return PROTEINS
+      .filter((p) => MEAT_IDS.includes(p.id))
+      .some((p) => p.pairings.some((r) => r.id === recipe.id));
+  }, []);
+
   const handleSurpriseMe = useCallback(() => {
     const pool = allRecipes.filter((recipe) => {
       if (isVegetarian && !recipe.tags?.includes("vegetarian")) return false;
-      if (excludesRedMeat && isRedMeatRecipe(recipe)) return false;
+      if (isPescatarian && isMeatRecipe(recipe)) return false;
+      if (isNoRedMeat && isRedMeatRecipe(recipe)) return false;
       if (timeFilter && parseInt(recipe.cookTime) > timeFilter) return false;
       return true;
     });
@@ -81,11 +101,13 @@ export default function CookPage() {
       const random = pool[Math.floor(Math.random() * pool.length)];
       router.push(`/recipe/${random.id}`);
     }, 600);
-  }, [allRecipes, isVegetarian, excludesRedMeat, isRedMeatRecipe, timeFilter, router]);
+  }, [allRecipes, isVegetarian, isPescatarian, isNoRedMeat, isMeatRecipe, isRedMeatRecipe, timeFilter, router]);
 
   const quickPickIds = isVegetarian
     ? VEGGIE_QUICK_PICK_IDS
-    : excludesRedMeat
+    : isPescatarian
+    ? PESCATARIAN_QUICK_PICK_IDS
+    : isNoRedMeat
     ? NO_RED_MEAT_QUICK_PICK_IDS
     : DEFAULT_QUICK_PICK_IDS;
 
@@ -101,7 +123,8 @@ export default function CookPage() {
 
   // Build visible protein list based on dietary preference
   // Default: all proteins except veggie-only (Chicken, Ground Beef, Eggs, Canned Tuna, Bacon = 5)
-  // No-red-meat / Pescatarian: all proteins except red meat (Chicken, Eggs, Canned Tuna, Bacon, Black Beans, Cheese, Tofu = 7)
+  // No-red-meat: all proteins except red meat (Chicken, Eggs, Canned Tuna, Bacon, Black Beans, Cheese, Tofu = 7)
+  // Pescatarian: fish + eggs + veggie (Eggs, Canned Tuna, Black Beans, Cheese, Tofu = 5)
   // Vegetarian: Eggs + veggie-only proteins (Eggs, Black Beans, Cheese, Tofu = 4)
   const visibleProteins = useMemo(() => {
     const filtered = timeFilter
@@ -114,11 +137,14 @@ export default function CookPage() {
     if (isVegetarian) {
       return filtered.filter((p) => p.id === "eggs" || VEGGIE_ONLY_IDS.includes(p.id));
     }
-    if (excludesRedMeat) {
+    if (isPescatarian) {
+      return filtered.filter((p) => !MEAT_IDS.includes(p.id));
+    }
+    if (isNoRedMeat) {
       return filtered.filter((p) => !RED_MEAT_IDS.includes(p.id));
     }
     return filtered.filter((p) => !VEGGIE_ONLY_IDS.includes(p.id));
-  }, [timeFilter, isVegetarian, excludesRedMeat]);
+  }, [timeFilter, isVegetarian, isPescatarian, isNoRedMeat]);
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">

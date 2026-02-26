@@ -9,6 +9,7 @@ import { usePreferences } from "@/lib/hooks/use-preferences";
 import { Search, ChevronLeft } from "lucide-react";
 
 const RED_MEAT_IDS = ["ground-beef"];
+const MEAT_IDS = ["chicken", "ground-beef", "bacon"];
 const VEGGIE_ONLY_IDS = ["black-beans", "cheese", "tofu"];
 
 type Filter =
@@ -43,17 +44,21 @@ function ExploreContent() {
   const { preferences } = usePreferences();
 
   const isVegetarian = preferences.dietary === "vegetarian";
-  const excludesRedMeat = ["no-red-meat", "pescatarian", "vegetarian"].includes(preferences.dietary);
+  const isPescatarian = preferences.dietary === "pescatarian";
+  const isNoRedMeat = preferences.dietary === "no-red-meat";
 
   const visibleProteins = useMemo(() => {
     if (isVegetarian) {
       return PROTEINS.filter((p) => p.id === "eggs" || VEGGIE_ONLY_IDS.includes(p.id));
     }
-    if (excludesRedMeat) {
+    if (isPescatarian) {
+      return PROTEINS.filter((p) => !MEAT_IDS.includes(p.id));
+    }
+    if (isNoRedMeat) {
       return PROTEINS.filter((p) => !RED_MEAT_IDS.includes(p.id));
     }
     return PROTEINS;
-  }, [isVegetarian, excludesRedMeat]);
+  }, [isVegetarian, isPescatarian, isNoRedMeat]);
 
   const allRecipes = useMemo(() => getAllRecipes(), []);
 
